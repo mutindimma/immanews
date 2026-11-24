@@ -1,21 +1,20 @@
 /* =========================================================
    "Before They Became Famous" — editorial series design
-   Ivory paper, charcoal ink, antique gold. Scoped to .bf pages
-   and the homepage feature (#bf-home).
+   Uses the site's own colours (from styles.css): navy/blue text
+   accents, gold rules and details. Serif type for the editorial
+   feel. Scoped to .bf pages and the homepage feature (#bf-home).
+   Dark mode follows the site's colours automatically.
    ========================================================= */
 :root {
-  --bf-paper: #f7f2e7;
-  --bf-paper-2: #efe6d3;
-  --bf-ink: #24211c;
-  --bf-ink-soft: #5c554a;
-  --bf-gold: #9c7a3c;
-  --bf-gold-soft: #c9ad74;
-  --bf-line: #d9cdb3;
+  --bf-paper: var(--bg);          /* page background */
+  --bf-paper-2: var(--soft);      /* panels, cards */
+  --bf-ink: var(--text);          /* main text */
+  --bf-ink-soft: var(--muted);    /* secondary text */
+  --bf-gold: var(--brand);        /* text accents: kickers, links */
+  --bf-gold-soft: var(--accent);  /* gold rules, borders, ornaments */
+  --bf-line: var(--line);
   --bf-serif-head: "Playfair Display", Georgia, "Times New Roman", serif;
   --bf-serif-body: "Source Serif 4", Georgia, "Times New Roman", serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root { --bf-paper: #1d1a15; --bf-paper-2: #262219; --bf-ink: #ece5d6; --bf-ink-soft: #b7ad99; --bf-gold: #d2b06e; --bf-gold-soft: #8c7547; --bf-line: #3b3428; }
 }
 
 body.bf { background: var(--bf-paper); }
@@ -29,7 +28,7 @@ body.bf { background: var(--bf-paper); }
 .bf-kicker { margin: 0; font: 700 .74rem Inter, sans-serif; letter-spacing: .22em; text-transform: uppercase; color: var(--bf-gold); }
 .bf-kicker i { font-style: normal; margin: 0 6px; color: var(--bf-gold-soft); }
 
-.bf-rule { display: flex; align-items: center; gap: 14px; color: var(--bf-gold); margin: 40px auto 18px; max-width: 220px; }
+.bf-rule { display: flex; align-items: center; gap: 14px; color: var(--accent); margin: 40px auto 18px; max-width: 220px; }
 .bf-rule::before, .bf-rule::after { content: ""; flex: 1; height: 1px; background: var(--bf-gold-soft); }
 .bf-rule span { font-size: .8rem; }
 
@@ -52,7 +51,7 @@ body.bf { background: var(--bf-paper); }
 .bf-body { font-family: var(--bf-serif-body); font-size: 1.16rem; line-height: 1.85; color: var(--bf-ink); }
 .bf-body p { margin: 0 0 1.15em; }
 .bf-body h2 { font-family: var(--bf-serif-head); font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.75rem); line-height: 1.25; text-align: center; margin: 0 0 22px; color: var(--bf-ink); }
-.bf-lede::first-letter { float: left; font-family: var(--bf-serif-head); font-weight: 800; font-size: 4.6em; line-height: .82; padding: 6px 10px 0 0; color: var(--bf-gold); }
+.bf-lede::first-letter { float: left; font-family: var(--bf-serif-head); font-weight: 800; font-size: 4.6em; line-height: .82; padding: 6px 10px 0 0; color: var(--brand); }
 
 .bf-share { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 36px 0 8px; padding: 16px 0; border-block: 1px solid var(--bf-line); font: 600 .85rem Inter, sans-serif; }
 .bf-share > span { color: var(--bf-ink-soft); text-transform: uppercase; letter-spacing: .14em; font-size: .72rem; margin-right: 4px; }
@@ -107,7 +106,7 @@ body.bf { background: var(--bf-paper); }
 .bf-card em { font: 700 .8rem Inter, sans-serif; font-style: normal; color: var(--bf-gold); }
 
 /* ---------- Homepage feature ---------- */
-.bf-home { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px; align-items: center; margin: 0 0 32px; padding: 22px; background: var(--bf-paper); border: 1px solid var(--bf-line); border-top: 3px solid var(--bf-gold); color: var(--bf-ink); }
+.bf-home { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 24px; align-items: center; margin: 0 0 32px; padding: 22px; background: var(--surface); border: 1px solid var(--bf-line); border-top: 3px solid var(--accent); color: var(--bf-ink); }
 .bf-home[hidden] { display: none; }
 .bf-home-img img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; filter: grayscale(1); border: 1px solid var(--bf-line); }
 .bf-home-badge { margin: 0; font-family: var(--bf-serif-head); font-style: italic; font-weight: 600; font-size: 1.05rem; color: var(--bf-gold); }
