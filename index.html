@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IMMA Media</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="description" content="Kenyan and international news, sports, health, travel guides, live weather and markets.">
+  <link rel="canonical" href="https://immanews.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IMMA Media">
+  <meta property="og:title" content="IMMA Media — News & Information">
+  <meta property="og:description" content="Kenyan and international news, sports, health, travel guides, live weather and markets.">
+  <meta property="og:url" content="https://immanews.com/">
+  <meta property="og:image" content="https://immanews.com/images/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#04163a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <!-- Top bar: logo + big search -->
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <a href="#" class="logo" aria-label="IMMA Media home"><img src="images/emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>MEDIA</i></span></a>
+      <form class="searchbox" id="search-form" role="search">
+        <input type="search" id="search" placeholder="Search the news" aria-label="Search the news">
+        <button type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+        </button>
+      </form>
+      <div class="top-links">
+        <a href="about.html">About Us</a>
+        <a href="contact.html" class="pill">Contact</a>
+      </div>
+    </div>
+    <!-- Category bar -->
+    <nav class="catbar" id="catbar">
+      <div class="wrap catbar-inner" id="filters"></div>
+    </nav>
+  </header>
+
+  <!-- Kenya Elections 2027 countdown banner -->
+  <div class="election-banner" id="election-banner" role="note" aria-label="Kenya Elections 2027 countdown">
+    <div class="wrap eb-inner">
+      <span class="eb-flag" aria-hidden="true"><i></i><i></i><i></i></span>
+      <strong class="eb-title">Kenya Elections 2027</strong>
+      <span class="eb-count"><b data-election-days>260</b> <span data-election-label>days to go</span></span>
+      <span class="eb-date">Tuesday, 10 August 2027</span>
+      <a class="eb-link" href="https://www.iebc.or.ke/" target="_blank" rel="noopener">IEBC info <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+
+  <main class="wrap layout">
+    <!-- Main column -->
+    <div class="main-col">
+      <section class="top-stories" id="top-stories"></section>
+
+      <section class="stream" id="news">
+        <h2 class="block-title">Latest Stories <span id="stream-label"></span></h2>
+        <div id="news-grid"></div>
+        <p class="empty" id="empty" hidden>No stories match your search.</p>
+      </section>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="side-col">
+      <section class="panel">
+        <h3 class="panel-title">Trending Now</h3>
+        <ol class="trending" id="trending"></ol>
+      </section>
+
+      <section class="panel weather loading" id="weather">
+        <h3 class="panel-title">Weather <small>live</small></h3>
+        <div class="weather-now">
+          <span class="wx-icon">🌍</span>
+          <div><strong class="wx-temp">…</strong><span class="wx-desc">Loading weather…</span></div>
+        </div>
+        <ul class="forecast"></ul>
+        <p class="wx-credit">Data: <a class="wx-source" href="#" target="_blank" rel="noopener"></a></p>
+      </section>
+
+      <section class="election-card" id="election" data-election-card aria-labelledby="election-title">
+        <div class="ec-flag" aria-hidden="true"><i></i><i></i><i></i></div>
+        <p class="ec-kicker" id="election-title">Kenya Elections 2027</p>
+        <p class="ec-days" data-election-days>260</p>
+        <p class="ec-label" data-election-label>days to go</p>
+        <p class="ec-date">Tuesday, 10 August 2027</p>
+        <p class="ec-tagline">Your Vote. Your Voice. Your Future.</p>
+        <a class="ec-link" href="https://www.iebc.or.ke/" target="_blank" rel="noopener">Official electoral information: IEBC <span aria-hidden="true">→</span></a>
+      </section>
+
+      <section class="panel markets-panel" id="markets">
+        <h3 class="panel-title">Markets <small>live</small></h3>
+        <ul class="markets" id="markets-list"></ul>
+        <p class="wx-credit"><span id="markets-updated">Loading…</span> · Data:
+          <a href="https://github.com/fawazahmed0/exchange-api" target="_blank" rel="noopener">currency-api</a>,
+          <a href="https://gold-api.com/" target="_blank" rel="noopener">gold-api</a>,
+          <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a></p>
+      </section>
+
+      <section class="panel" id="info">
+        <h3 class="panel-title">Useful Information</h3>
+        <ul class="info-list">
+          <li><span>🏛️</span><div><b>Public Services</b><p>Offices, hours and common documents.</p></div></li>
+          <li><span>🩺</span><div><b>Health &amp; Safety</b><p>Emergency numbers and nearby clinics.</p></div></li>
+          <li><span>🚌</span><div><b>Transport</b><p>Routes, fares and travel updates.</p></div></li>
+          <li><span>🎓</span><div><b>Education</b><p>School calendars and scholarships.</p></div></li>
+        </ul>
+      </section>
+
+      <section class="panel tip-panel" id="contact">
+        <h3 class="panel-title">Send Us a Tip</h3>
+        <p>Seen something newsworthy? Share a story, photo or lead with the IMMA Media team.</p>
+        <a class="btn-gold" href="contact.html?type=tip">Send a news tip</a>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Article reader -->
+  <dialog id="reader">
+    <button class="close" aria-label="Close">✕</button>
+    <div id="reader-body"></div>
+  </dialog>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a href="#" class="footer-logo"><img src="images/logo.png" alt="IMMA Media - Content, Broadcast, Production"></a>
+      <nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="about.html#editorial">Editorial Standards</a></nav>
+      <p>© <span id="year"></span> IMMA Media · Content • Broadcast • Production</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script src="config.js"></script>
+  <script src="news.js"></script>
+  <script src="script.js"></script>
+  <script src="weather.js"></script>
+  <script src="markets.js"></script>
+  <script src="site.js"></script>
+  <script src="election.js"></script>
+</body>
+</html>

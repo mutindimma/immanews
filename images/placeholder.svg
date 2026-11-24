@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bg" cx="70%" cy="35%" r="85%">
+      <stop offset="0" stop-color="#0a3470"/>
+      <stop offset=".6" stop-color="#04163a"/>
+      <stop offset="1" stop-color="#000a1c"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0" stop-color="#f5b003"/>
+      <stop offset="1" stop-color="#fdca1c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <!-- globe grid -->
+  <g fill="none" stroke="#1e7bff" stroke-opacity=".22" stroke-width="2">
+    <circle cx="1130" cy="330" r="300"/>
+    <ellipse cx="1130" cy="330" rx="120" ry="300"/>
+    <ellipse cx="1130" cy="330" rx="220" ry="300"/>
+    <line x1="830" y1="330" x2="1430" y2="330"/>
+    <ellipse cx="1130" cy="330" rx="300" ry="110"/>
+    <ellipse cx="1130" cy="330" rx="300" ry="210"/>
+  </g>
+  <!-- broadcast arcs -->
+  <g fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-width="10">
+    <path d="M1205 255 a150 150 0 0 1 0 150" stroke-opacity=".9"/>
+    <path d="M1250 205 a220 220 0 0 1 0 250" stroke-opacity=".6"/>
+    <path d="M1295 155 a290 290 0 0 1 0 350" stroke-opacity=".35"/>
+  </g>
+  <circle cx="1150" cy="330" r="22" fill="url(#gold)"/>
+  <!-- wordmark -->
+  <text x="420" y="210" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="120" fill="#ffffff" letter-spacing="6">IMMA</text>
+  <text x="426" y="280" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="46" fill="url(#gold)" letter-spacing="30">MEDIA</text>
+  <rect x="426" y="310" width="420" height="4" fill="url(#gold)" opacity=".8"/>
+</svg>

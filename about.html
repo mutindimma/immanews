@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us · IMMA Media</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="description" content="IMMA Media is a Kenya-based digital news and information platform covering Kenya, Africa and the world.">
+  <link rel="canonical" href="https://immanews.com/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IMMA Media">
+  <meta property="og:title" content="About Us · IMMA Media">
+  <meta property="og:description" content="IMMA Media is a Kenya-based digital news and information platform covering Kenya, Africa and the world.">
+  <meta property="og:url" content="https://immanews.com/about.html">
+  <meta property="og:image" content="https://immanews.com/images/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#04163a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html" class="logo" aria-label="IMMA Media home"><img src="images/emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>MEDIA</i></span></a>
+      <form class="searchbox" action="index.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Search the news" aria-label="Search the news">
+        <button type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+        </button>
+      </form>
+      <div class="top-links">
+        <a href="about.html" aria-current="page">About Us</a>
+        <a href="contact.html" class="pill">Contact</a>
+      </div>
+    </div>
+    <nav class="catbar" aria-label="News categories">
+      <div class="wrap catbar-inner" id="filters" data-links></div>
+    </nav>
+  </header>
+
+  <!-- Kenya Elections 2027 countdown banner -->
+  <div class="election-banner" id="election-banner" role="note" aria-label="Kenya Elections 2027 countdown">
+    <div class="wrap eb-inner">
+      <span class="eb-flag" aria-hidden="true"><i></i><i></i><i></i></span>
+      <strong class="eb-title">Kenya Elections 2027</strong>
+      <span class="eb-count"><b data-election-days>260</b> <span data-election-label>days to go</span></span>
+      <span class="eb-date">Tuesday, 10 August 2027</span>
+      <a class="eb-link" href="https://www.iebc.or.ke/" target="_blank" rel="noopener">IEBC info <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="kicker">About IMMA Media</p>
+        <h1>Stories That Matter.<br><span>Information That Empowers.</span></h1>
+        <p class="hero-lead">Independent digital media bringing Kenyan perspectives and international developments together in one place.</p>
+        <p class="hero-tags">Kenya <i>•</i> Africa <i>•</i> The World</p>
+      </div>
+    </section>
+
+    <!-- Who we are -->
+    <section class="page-section wrap two-col">
+      <div>
+        <p class="kicker dark">Who we are</p>
+        <h2>Your World. Your Stories. Your Media.</h2>
+      </div>
+      <div class="prose">
+        <p>IMMA Media is a Kenya-based digital news and information platform dedicated to making important stories accessible, engaging and relevant to everyday life.</p>
+        <p>We cover developments across Kenya, Africa and the international community, providing readers with news, practical information and insights that help them stay informed.</p>
+        <p>Our coverage includes international affairs, sports, health and wellness, travel and practical guides, markets and weather.</p>
+      </div>
+    </section>
+
+    <!-- Mission & vision -->
+    <section class="page-section wrap">
+      <div class="mv-grid">
+        <article class="mv-card">
+          <span class="mv-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          </span>
+          <h3>Our Mission</h3>
+          <p>To inform, educate and empower our readers by delivering accessible, relevant and engaging digital content.</p>
+        </article>
+        <article class="mv-card">
+          <span class="mv-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+          <h3>Our Vision</h3>
+          <p>To become a trusted African digital media platform connecting local perspectives with global conversations.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Coverage -->
+    <section class="page-section soft-band">
+      <div class="wrap">
+        <p class="kicker dark">What we cover</p>
+        <h2>Coverage</h2>
+        <div class="cover-grid">
+          <a class="cover-card" href="index.html?c=International">
+            <span class="cover-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+            <h3>International News</h3>
+            <p>Global events, politics, economic developments and major stories shaping the world.</p>
+          </a>
+          <a class="cover-card" href="index.html?c=Sports">
+            <span class="cover-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg></span>
+            <h3>Sports</h3>
+            <p>Kenyan and international football, athletics, rugby and other sporting events.</p>
+          </a>
+          <a class="cover-card" href="index.html?c=Health">
+            <span class="cover-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.6-9 9-9 9z"/></svg></span>
+            <h3>Health &amp; Wellness</h3>
+            <p>Evidence-based health information, nutrition and practical lifestyle guidance.</p>
+          </a>
+          <a class="cover-card" href="index.html?c=Travel">
+            <span class="cover-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></span>
+            <h3>Travel &amp; Guides</h3>
+            <p>Practical, step-by-step guides on travel, documents and everyday living.</p>
+          </a>
+          <a class="cover-card" href="index.html#markets">
+            <span class="cover-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 16l4-5 4 3 6-8"/></svg></span>
+            <h3>Markets</h3>
+            <p>Live exchange rates against the Kenya shilling, plus gold and Bitcoin prices.</p>
+          </a>
+          <a class="cover-card" href="index.html#weather">
+            <span class="cover-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 18h10a4 4 0 0 0 0-8 6 6 0 0 0-11.5 1.5A3.3 3.3 0 0 0 7 18z"/></svg></span>
+            <h3>Weather</h3>
+            <p>Live conditions and a five-day forecast to help you plan your day.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial commitment -->
+    <section class="page-section wrap two-col" id="editorial">
+      <div>
+        <p class="kicker dark">Editorial standards</p>
+        <h2>Our Editorial Commitment</h2>
+      </div>
+      <div>
+        <ul class="commit-list">
+          <li><b>Accuracy first.</b> We aim to publish accurate, clearly written information and check key facts against the original sources.</li>
+          <li><b>Credited sources.</b> Every story names the reporting or official sources it is based on, with links where available.</li>
+          <li><b>Honest images.</b> Photos are licensed for reuse and credited. Illustrative or AI-generated images are labelled as such.</li>
+          <li><b>Clear labelling.</b> We keep factual reporting separate from opinion and sponsored content, and label each clearly.</li>
+          <li><b>Prompt corrections.</b> When an error is identified, we review it and correct it promptly. <a href="contact.html?type=correction">Report an error</a>.</li>
+          <li><b>Fairness and respect.</b> We value transparency, fairness and respect for our readers and the people we write about.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Perspective -->
+    <section class="page-section wrap">
+      <div class="perspective">
+        <p class="kicker">Our home, our perspective</p>
+        <p class="perspective-text">Based in Kenya, IMMA Media brings an African perspective to global conversations while celebrating the stories, achievements and developments that matter to our communities.</p>
+        <p class="tagline">IMMA Media — Stay Informed. Stay Connected.</p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="page-section wrap cta-row">
+      <div>
+        <h2>Have a story, question or business enquiry?</h2>
+        <p>Send us a news tip, advertising enquiry or correction. We'd love to hear from you.</p>
+      </div>
+      <div class="cta-buttons">
+        <a class="btn-gold" href="contact.html">Contact us</a>
+        <a class="btn-outline" href="contact.html?type=tip">Send a news tip</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="IMMA Media - Content, Broadcast, Production"></a>
+      <nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="about.html#editorial">Editorial Standards</a></nav>
+      <p>© <span id="year"></span> IMMA Media · Content • Broadcast • Production</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="news.js"></script>
+  <script src="site.js"></script>
+  <script src="election.js"></script>
+</body>
+</html>
