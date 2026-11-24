@@ -42,3 +42,15 @@ const CONTACT = {
     linkedin: ""
   }
 };
+
+// ============================================================
+//  ACCOUNTS (Supabase) — see SUPABASE-SETUP.md
+//  Paste your project's URL and its *publishable* (anon) key.
+//  These two are meant to be public. NEVER paste the
+//  "service_role" / "secret" key here.
+//  While empty, the Sign in page shows "coming soon".
+// ============================================================
+const SUPABASE = {
+  url: "https://gbajbqczpwdxghgpgsoo.supabase.co",
+  anonKey: "sb_publishable_CeBFBTA7vT-pEXsEQ5rRYw_8Nzk92qI"   // publishable key — safe to be public
+};

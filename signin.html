@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in · IMMA Media</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="description" content="Sign in or create your free IMMA Media account with Google.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html" class="logo" aria-label="IMMA Media home"><img src="images/emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>MEDIA</i></span></a>
+      <form class="searchbox" action="index.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Search the news" aria-label="Search the news">
+        <button type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+        </button>
+      </form>
+      <div class="top-links">
+        <a href="about.html">About Us</a>
+        <a href="signin.html" data-auth-link aria-current="page">Sign in</a>
+        <a href="contact.html" class="pill">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <section class="auth-card" aria-labelledby="auth-title">
+      <img class="auth-emblem" src="images/emblem.png" alt="">
+      <h1 id="auth-title">Join IMMA Media</h1>
+      <p class="auth-sub">Sign in or create your free account in one step.</p>
+
+      <ul class="auth-perks">
+        <li><span aria-hidden="true">★</span> Save stories to read later</li>
+        <li><span aria-hidden="true">✉</span> Choose to get our news updates by email</li>
+        <li><span aria-hidden="true">💬</span> Join the conversation on stories <small>(coming soon)</small></li>
+      </ul>
+
+      <button type="button" class="google-btn" id="google-btn">
+        <svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.2 5.6c4.2-3.9 7.1-9.6 7.1-17z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.2-5.6c-2 1.4-4.7 2.3-8.7 2.3-6.2 0-11.5-4.1-13.4-9.9l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>
+        <span>Continue with Google</span>
+      </button>
+
+      <p class="auth-status" id="auth-status" role="status" aria-live="polite" hidden></p>
+
+      <p class="auth-fine">
+        New here? Continuing with Google creates your account automatically.
+        We only receive your name, email address and profile picture from Google, and we never post anything for you.
+        Email updates are off unless you switch them on in your account.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="IMMA Media - Content, Broadcast, Production"></a>
+      <nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="about.html#editorial">Editorial Standards</a></nav>
+      <p>© <span id="year"></span> IMMA Media · Content • Broadcast • Production</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="site.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    (() => {
+      const A = window.IMMA_AUTH;
+      const btn = document.getElementById("google-btn");
+      const status = document.getElementById("auth-status");
+      const next = new URLSearchParams(location.search).get("next");
+      const safeNext = next && /^[a-z0-9_-]+\.html([?#].*)?$/i.test(next) ? next : "account.html";
+      const say = (msg, kind) => { status.hidden = false; status.className = "auth-status " + (kind || ""); status.textContent = msg; };
+
+      if (!A.configured) {
+        btn.disabled = true;
+        say("Accounts are coming soon. Sign-in will open here shortly.", "info");
+        return;
+      }
+      A.onChange((user) => { if (user) location.replace(safeNext); });
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        say("Opening Google…", "info");
+        try { await A.signInWithGoogle(safeNext); }
+        catch (e) { btn.disabled = false; say("Sorry, sign-in didn't start. Please try again.", "error"); console.error(e); }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -125,6 +125,7 @@ function openStory(i) {
       ${credit(s)}
     </div>`;
   reader.querySelectorAll(".reader-text a").forEach((a) => { a.target = "_blank"; a.rel = "noopener"; });
+  if (window.IMMA_AUTH) window.IMMA_AUTH.decorateReader(s, reader.querySelector(".reader-text"));
   reader.showModal();
 }
 document.addEventListener("click", (e) => {
@@ -140,7 +141,11 @@ reader.addEventListener("click", (e) => { if (e.target === reader) reader.close(
 // Links from other pages: index.html?c=Sports (category) or index.html?q=passport (search)
 (() => {
   const params = new URLSearchParams(location.search);
-  const c = params.get("c"), q = params.get("q");
+  const c = params.get("c"), q = params.get("q"), story = params.get("story");
+  if (story && window.IMMA_AUTH) {
+    const i = NEWS.findIndex((s) => window.IMMA_AUTH.storyKey(s) === story);
+    if (i >= 0) openStory(i);
+  }
   if (q) {
     $("#search").value = q;
     render();

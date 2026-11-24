@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Account · IMMA Media</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html" class="logo" aria-label="IMMA Media home"><img src="images/emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>MEDIA</i></span></a>
+      <form class="searchbox" action="index.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Search the news" aria-label="Search the news">
+        <button type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+        </button>
+      </form>
+      <div class="top-links">
+        <a href="about.html">About Us</a>
+        <a href="signin.html" data-auth-link aria-current="page">Sign in</a>
+        <a href="contact.html" class="pill">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap account-page">
+    <p class="account-loading" id="acct-loading">Loading your account…</p>
+
+    <div id="acct" hidden>
+      <section class="acct-head">
+        <img id="acct-avatar" alt="" referrerpolicy="no-referrer" hidden>
+        <div>
+          <p class="kicker dark">My account</p>
+          <h1 id="acct-name"></h1>
+          <p id="acct-email" class="acct-email"></p>
+          <p id="acct-role" class="acct-role" hidden></p>
+        </div>
+        <button type="button" class="btn-outline" id="signout">Sign out</button>
+      </section>
+
+      <div class="acct-grid">
+        <section class="acct-card" aria-labelledby="nl-title">
+          <h2 id="nl-title">Email updates</h2>
+          <p>Get IMMA Media's top stories sent to <b id="nl-email"></b>. You can switch this off at any time.</p>
+          <label class="switch">
+            <input type="checkbox" id="nl-toggle">
+            <span class="slider" aria-hidden="true"></span>
+            <span id="nl-label">Send me news updates</span>
+          </label>
+          <p class="acct-note" id="nl-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="acct-card" aria-labelledby="saved-title">
+          <h2 id="saved-title">Saved stories</h2>
+          <ul class="saved-list" id="saved-list"></ul>
+          <p class="acct-note" id="saved-empty" hidden>No saved stories yet. Open any story and tap <b>☆ Save story</b>.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="IMMA Media - Content, Broadcast, Production"></a>
+      <nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="about.html#editorial">Editorial Standards</a></nav>
+      <p>© <span id="year"></span> IMMA Media · Content • Broadcast • Production</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="news.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="site.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    (() => {
+      const A = window.IMMA_AUTH;
+      const $ = (id) => document.getElementById(id);
+      const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+      if (!A.configured) { location.replace("signin.html"); return; }
+
+      A.onChange(async (user) => {
+        if (!user) { location.replace("signin.html?next=account.html"); return; }
+        const m = user.user_metadata || {};
+        $("acct-name").textContent = A.displayName(user);
+        $("acct-email").textContent = user.email || "";
+        $("nl-email").textContent = user.email || "your email";
+        if (m.avatar_url) { $("acct-avatar").src = m.avatar_url; $("acct-avatar").hidden = false; }
+
+        // Profile (newsletter choice + role)
+        const { data: profile } = await A.client.from("profiles").select("newsletter, role").eq("id", user.id).maybeSingle();
+        $("nl-toggle").checked = !!(profile && profile.newsletter);
+        if (profile && profile.role && profile.role !== "reader") {
+          $("acct-role").hidden = false;
+          $("acct-role").textContent = profile.role === "admin" ? "Admin" : "Staff";
+        }
+
+        renderSaved();
+        $("acct-loading").hidden = true;
+        $("acct").hidden = false;
+      });
+
+      function renderSaved() {
+        const stories = (typeof NEWS !== "undefined" ? NEWS : []).filter((s) => A.saved.has(A.storyKey(s)));
+        $("saved-list").innerHTML = stories.map((s) => `
+          <li>
+            <a href="index.html?story=${encodeURIComponent(A.storyKey(s))}">
+              <span class="label">${esc(s.category)}</span>
+              <b>${esc(s.title)}</b>
+            </a>
+            <button type="button" class="remove" data-key="${esc(A.storyKey(s))}" aria-label="Remove from saved">✕</button>
+          </li>`).join("");
+        $("saved-empty").hidden = stories.length > 0;
+      }
+
+      $("saved-list").addEventListener("click", async (e) => {
+        const b = e.target.closest(".remove");
+        if (!b) return;
+        const story = NEWS.find((s) => A.storyKey(s) === b.dataset.key);
+        if (story) { await A.toggleSave(story); renderSaved(); }
+      });
+
+      $("nl-toggle").addEventListener("change", async (e) => {
+        const on = e.target.checked;
+        $("nl-status").textContent = "Saving…";
+        const { error } = await A.client.from("profiles")
+          .update({ newsletter: on, newsletter_updated_at: new Date().toISOString() })
+          .eq("id", A.user.id);
+        if (error) { e.target.checked = !on; $("nl-status").textContent = "Couldn't save that. Please try again."; return; }
+        $("nl-status").textContent = on ? "You're subscribed to email updates." : "Email updates are off.";
+      });
+
+      $("signout").addEventListener("click", async () => { await A.signOut(); location.href = "index.html"; });
+    })();
+  </script>
+</body>
+</html>
