@@ -32,6 +32,6 @@
   if (bar && typeof NEWS !== "undefined") {
     const cats = ["Home", ...new Set(NEWS.map((n) => n.category))];
     bar.innerHTML = cats.map((c) =>
-      `<a class="chip" href="index.html${c === "Home" ? "" : "?c=" + encodeURIComponent(c)}">${esc(c)}</a>`).join("");
+      `<a class="chip" href="/index.html${c === "Home" ? "" : "?c=" + encodeURIComponent(c)}">${esc(c)}</a>`).join("");
   }
 })();

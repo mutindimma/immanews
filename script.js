@@ -113,6 +113,7 @@ function credit(s) {
 
 function openStory(i) {
   const s = NEWS[i];
+  if (s.url) { location.href = s.url; return; }
   $("#reader-body").innerHTML = `
     <img src="${pic(s)}" alt="">
     ${s.caption ? `<p class="caption">${esc(s.caption)}</p>` : ""}

@@ -16,9 +16,10 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#04163a">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="series.css">
 </head>
 <body>
   <!-- Top bar: logo + big search -->
@@ -59,6 +60,9 @@
     <!-- Main column -->
     <div class="main-col">
       <section class="top-stories" id="top-stories"></section>
+
+      <!-- Before They Became Famous: latest edition (filled by series.js) -->
+      <section class="bf-home" id="bf-home" aria-label="Before They Became Famous" hidden></section>
 
       <section class="stream" id="news">
         <h2 class="block-title">Latest Stories <span id="stream-label"></span></h2>
@@ -138,12 +142,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
   <script src="config.js"></script>
   <script src="news.js"></script>
+  <script src="series-feed.js"></script>
+  <script src="series-feed-merge.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
   <script src="auth.js"></script>
   <script src="script.js"></script>
   <script src="weather.js"></script>
   <script src="markets.js"></script>
   <script src="site.js"></script>
+  <script src="series.js"></script>
   <script src="election.js"></script>
 </body>
 </html>
