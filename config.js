@@ -1,5 +1,5 @@
 // ============================================================
-//  IMMA MEDIA — SITE SETTINGS
+//  IMMA NEWS — SITE SETTINGS
 // ============================================================
 const WEATHER = {
   // City shown in the Weather panel

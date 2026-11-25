@@ -73,7 +73,7 @@
       type: TYPES[form.elements.type.value],
       message: form.elements.message.value.trim()
     };
-    const text = `IMMA Media enquiry — ${data.type}\n\nName: ${data.name}\nEmail: ${data.email}\n\n${data.message}`;
+    const text = `IMMA News enquiry — ${data.type}\n\nName: ${data.name}\nEmail: ${data.email}\n\n${data.message}`;
 
     if (!useService) {
       if (!C.whatsapp) { show("error", "Online sending isn't set up yet. Please call us instead."); return; }
@@ -89,7 +89,7 @@
       const res = await fetch(C.formEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...data, _subject: `IMMA Media: ${data.type}` })
+        body: JSON.stringify({ ...data, _subject: `IMMA News: ${data.type}` })
       });
       if (!res.ok) throw new Error(res.status);
       form.reset();

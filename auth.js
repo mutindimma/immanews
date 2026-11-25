@@ -1,4 +1,4 @@
-// IMMA Media accounts — shared by every page.
+// IMMA News accounts — shared by every page.
 // Uses Supabase with Google sign-in. Exposes window.IMMA_AUTH.
 (() => {
   const cfg = typeof SUPABASE !== "undefined" ? SUPABASE : {};

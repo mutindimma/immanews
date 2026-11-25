@@ -69,7 +69,7 @@ function render() {
         <span class="label">${esc(s.category)}</span>
         <h3>${esc(s.title)}</h3>
         <p>${esc(s.summary)}</p>
-        <span class="source">IMMA Media · ${fmt(s.date)}</span>
+        <span class="source">IMMA News · ${fmt(s.date)}</span>
       </div>
     </article>`).join("");
   $("#empty").textContent = q || active !== "Home" ? "No stories match your search." : "More stories coming soon.";
@@ -105,9 +105,9 @@ function paragraphs(body, extras = []) {
 // News stories: "Based on reporting by X". Guides: "Sources: A, B".
 function credit(s) {
   if (s.sources && s.sources.length)
-    return `<p class="credit">Sources: ${s.sources.map((x) => link(x.name, x.url)).join(", ")}. Written for IMMA Media.</p>`;
+    return `<p class="credit">Sources: ${s.sources.map((x) => link(x.name, x.url)).join(", ")}. Written for IMMA News.</p>`;
   if (s.source)
-    return `<p class="credit">Based on reporting by ${link(s.source, s.sourceUrl)}. Written for IMMA Media.</p>`;
+    return `<p class="credit">Based on reporting by ${link(s.source, s.sourceUrl)}. Written for IMMA News.</p>`;
   return "";
 }
 
@@ -120,7 +120,7 @@ function openStory(i) {
     <div class="reader-text">
       <span class="label">${esc(s.category)}</span>
       <h2>${esc(s.title)}</h2>
-      <p class="source">IMMA Media · ${fmt(s.date)}</p>
+      <p class="source">IMMA News · ${fmt(s.date)}</p>
       <p class="lead">${esc(s.summary)}</p>
       ${s.format === "markdown" && window.marked ? marked.parse(s.body) : paragraphs(s.body, s.extraImages)}
       ${credit(s)}

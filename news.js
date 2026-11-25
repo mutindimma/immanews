@@ -1,5 +1,5 @@
 // ============================================================
-//  IMMA MEDIA — NEWS STORIES
+//  IMMA NEWS — NEWS STORIES
 //  Add a new story by copying one { ... } block and editing it.
 //  Newest dates show first. Mark one story `featured: true`
 //  to put it in the big spot at the top.

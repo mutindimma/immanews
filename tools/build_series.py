@@ -77,7 +77,7 @@ def head(title, desc, url, image, image_alt, extra="", noindex=False, og_type="w
   <link rel="canonical" href="{e(url)}">
   <link rel="icon" type="image/png" href="/images/favicon.png">
   <meta property="og:type" content="{og_type}">
-  <meta property="og:site_name" content="IMMA Media">
+  <meta property="og:site_name" content="IMMA News">
   <meta property="og:title" content="{e(title)}">
   <meta property="og:description" content="{e(desc)}">
   <meta property="og:url" content="{e(url)}">
@@ -97,7 +97,7 @@ def head(title, desc, url, image, image_alt, extra="", noindex=False, og_type="w
 <body class="bf">
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <a href="/index.html" class="logo" aria-label="IMMA Media home"><img src="/images/emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>MEDIA</i></span></a>
+      <a href="/index.html" class="logo" aria-label="IMMA News home"><img src="/images/imma-news-emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>NEWS</i></span></a>
       <form class="searchbox" action="/index.html" method="get" role="search">
         <input type="search" name="q" placeholder="Search the news" aria-label="Search the news">
         <button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg></button>
@@ -116,9 +116,10 @@ def head(title, desc, url, image, image_alt, extra="", noindex=False, og_type="w
 FOOT = '''
   <footer class="footer">
     <div class="wrap footer-inner">
-      <a href="/index.html" class="footer-logo"><img src="/images/logo.png" alt="IMMA Media - Content, Broadcast, Production"></a>
+      <a href="/index.html" class="footer-logo"><img src="/images/imma-news-logo.png" alt="IMMA News"></a>
       <nav aria-label="Footer"><a href="/about.html">About Us</a><a href="/contact.html">Contact</a><a href="/about.html#editorial">Editorial Standards</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
-      <p>© <span id="year"></span> IMMA Media · Content • Broadcast • Production</p>
+      <p class="owner">A publication of <img src="/images/imma-media-logo.png" alt="IMMA Media"></p>
+      <p>© <span id="year"></span> IMMA Media · Content • Broadcast • Production. IMMA News is owned and published by IMMA Media.</p>
     </div>
   </footer>
   <script src="/config.js"></script>
@@ -144,7 +145,7 @@ def article_page(series, ed, eds):
         "headline": ed["title"], "description": ed["metaDescription"],
         "image": [SITE + cover["src"]],
         "author": {"@type": "Organization", "name": ed["author"]},
-        "publisher": {"@type": "Organization", "name": "IMMA Media", "logo": {"@type": "ImageObject", "url": SITE + "/images/logo.png"}},
+        "publisher": {"@type": "Organization", "name": "IMMA News", "logo": {"@type": "ImageObject", "url": SITE + "/images/imma-news-logo.png"}},
         "mainEntityOfPage": url, "articleSection": series["category"], "keywords": ", ".join(ed["tags"]),
         "isPartOf": {"@type": "CreativeWorkSeries", "name": series["name"], "url": f"{SITE}/history/{series['slug']}/"},
     }
@@ -165,10 +166,10 @@ def article_page(series, ed, eds):
             <img src="{e(o['images'][o['cover']]['src'])}" alt="" loading="lazy">
             <span><small>Edition {e(o['edition'])}</small><b>{e(o['title'])}</b></span>
           </a>''' for o in others[:3]) or '<p class="bf-soon">More editions are on the way: a new story every Sunday.</p>'
-    share_text = f"{ed['title']} — {series['name']}, IMMA Media"
+    share_text = f"{ed['title']} — {series['name']}, IMMA News"
     sources = "".join(f'''
           <li><a href="{e(s['url'])}" target="_blank" rel="noopener">{e(s['name'])}</a><span>{e(s['supports'])}</span></li>''' for s in ed["sources"])
-    return head(ed["seoTitle"] + " · IMMA Media", ed["metaDescription"], url, cover["src"], cover["alt"], extra, noindex=draft, og_type="article") + f'''
+    return head(ed["seoTitle"] + " · IMMA News", ed["metaDescription"], url, cover["src"], cover["alt"], extra, noindex=draft, og_type="article") + f'''
   <main class="bf-page">
     {'<p class="bf-draft-banner" role="status">DRAFT PREVIEW — not published. Only visible on your computer.</p>' if draft else ''}
     <nav class="bf-crumbs wrap" aria-label="Breadcrumb">
@@ -249,7 +250,7 @@ def landing_page(series, eds):
         </div>
       </section>'''
     previous = "".join(card(x) for x in eds[1:]) or '<p class="bf-soon">Earlier editions will appear here. A new story is published every Sunday.</p>'
-    return head(f"{series['name']} · IMMA Media", series["description"], url, (latest["images"][latest["cover"]]["src"] if latest else "/images/logo.png"),
+    return head(f"{series['name']} · IMMA News", series["description"], url, (latest["images"][latest["cover"]]["src"] if latest else "/images/og-image.png"),
                 "Before They Became Famous", noindex=bool(latest and latest["status"] != "published")) + f'''
   <main class="bf-page">
     <nav class="bf-crumbs wrap" aria-label="Breadcrumb">
@@ -258,7 +259,7 @@ def landing_page(series, eds):
       <span aria-current="page">{e(series['name'])}</span>
     </nav>
     <header class="bf-masthead wrap">
-      <p class="bf-kicker">IMMA Media <i>·</i> {e(series['category'])}</p>
+      <p class="bf-kicker">IMMA News <i>·</i> {e(series['category'])}</p>
       <h1>{e(series['name'])}</h1>
       <p class="bf-tagline">{e(series['tagline'])}</p>
       <div class="bf-rule" aria-hidden="true"><span>✦</span></div>
