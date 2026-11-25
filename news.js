@@ -136,59 +136,6 @@ Bigger picture: China's goal is a crewed Moon landing by 2030, while the United 
     ]
   },
   {
-    title: "EU Proposes 22nd Russia Sanctions Package Targeting Banks, Crypto and Sport",
-    category: "International",
-    date: "2026-11-25",
-    image: "https://images.unsplash.com/photo-1594810205183-18a8b0ce6c13?auto=format&fit=crop&w=1600&q=75",
-    caption: "EU flags outside the European Commission's Berlaymont building in Brussels. Photo: Guillaume Périgois / Unsplash.",
-    summary: "The European Commission wants to cut 60 more Russian banks off SWIFT, go after crypto platforms used to dodge restrictions, and bar Russian teams from competing under their flag in Europe.",
-    body: `The European Commission has put forward a new set of sanctions against Russia, aimed at its banks, its use of cryptocurrency and, for the first time, its place in European sport.
-
-The proposal: Unveiled on Monday, November 23, the package would be the EU's 22nd round of sanctions since Russia's full-scale invasion of Ukraine in February 2022. It is only a proposal for now: all 27 member states must agree before it takes effect, and the measures may change during negotiations. Brussels is aiming for a deal in December.
-
-Banks and crypto: The plan would remove about 60 more Russian banks from SWIFT, the network banks use to send payment instructions to each other. It also targets cryptocurrency platforms and payment networks, both inside Russia and in other countries, that are said to help Moscow get around existing restrictions.
-
-Shadow fleet and refineries: More than 70 extra ships from Russia's so-called shadow fleet, which the EU says is used to carry oil outside the price cap, would be added to the list. European companies would also be barred from repairing Russian energy facilities, especially oil refineries damaged by Ukrainian long-range strikes.
-
-Soldiers and athletes: The Commission has brought back a proposed entry ban on Russians who have fought in Ukraine, an idea that stalled earlier this year. It also wants sports events held in the EU to stop Russian sides and sportspeople from appearing under their national flag.
-
-What was said: Commission President Ursula von der Leyen said the EU would keep proposing new sanctions until Russia shows a genuine wish for lasting peace in Ukraine.`,
-    sources: [
-      { name: "Euronews — EU goes after Russia's banks, soldiers and athletes", url: "https://www.euronews.com/2026/11/23/eu-goes-after-russias-banks-soldiers-and-athletes-in-new-sanctions-package" },
-      { name: "Al Jazeera — EU plans sports ban in new Russia sanctions proposal", url: "https://www.aljazeera.com/news/2026/11/23/eu-plans-sports-ban-in-sweeping-new-russia-sanctions-proposal" }
-    ]
-  },
-  {
-    title: "Iran Threatens to Confront US Naval Blockade as Tensions Escalate in the Middle East",
-    category: "International",
-    date: "2026-11-23",
-    image: "images/iran-blockade.webp",
-    caption: "Illustrative image: a naval vessel and an oil tanker at sea.",
-    summary: "Iran has warned that it will use all available means to challenge the United States' naval blockade, raising concerns about a renewed military confrontation and further disruption to global energy supplies.",
-    body: `Iran has issued a fresh warning to the United States, declaring that it will take necessary measures to resist Washington's continuing naval blockade.
-
-Speaking at a news conference on Monday, Iranian Foreign Ministry spokesperson Esmaeil Baghaei described the blockade as an act of military aggression and insisted that Tehran has the right to defend its economic and national interests.
-
-The dispute centres on American restrictions targeting Iranian oil exports. The blockade was initially introduced on 13 April 2026, temporarily lifted in June following preliminary negotiations, and reinstated on 14 July after diplomatic efforts collapsed.
-
-The renewed restrictions have severely affected Iran's ability to export crude oil, with visible shipments falling to almost zero in recent months.
-
-Iran maintains that it controls passage through the strategically important Strait of Hormuz and has demanded an end to hostilities, removal of the blockade, and relief from sanctions before reopening the waterway under its stated conditions.
-
-The situation has alarmed the international shipping industry. The Strait of Hormuz is a crucial maritime passage connecting the Persian Gulf with global markets, particularly for oil and liquefied natural gas shipments.
-
-Any further military escalation could increase shipping costs, disrupt energy supplies and place additional pressure on economies that depend heavily on imported petroleum.
-
-For African countries, including Kenya, prolonged instability in the Gulf could contribute to higher fuel import costs and increased transportation and consumer prices.
-
-With both Washington and Tehran maintaining opposing positions, the international community faces renewed uncertainty over the prospects for a negotiated settlement.
-
-The coming days could prove critical as governments and shipping companies monitor whether diplomatic engagement can prevent further escalation.`,
-    source: "Reuters",
-    sourceUrl: "https://www.reuters.com/world/middle-east/iran-says-it-will-use-all-available-tools-confront-us-naval-blockade-2026-11-23/"
-  },
-
-  {
     title: "Kenya's Mirriam Cherop Wins Thrilling Cross-Country Race in Spain",
     category: "Sports",
     date: "2026-11-23",
