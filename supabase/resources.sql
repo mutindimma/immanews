@@ -192,9 +192,10 @@ declare rid text;
 begin
   rid := coalesce(to_jsonb(coalesce(new, old)) ->> 'id', to_jsonb(coalesce(new, old)) ->> 'slug');
   if tg_op = 'UPDATE' and tg_table_name = 'public_resources' then new.updated_at := now(); new.updated_by := auth.uid(); end if;
-  if tg_op in ('INSERT', 'UPDATE') and tg_table_name = 'public_notices' and new.status = 'published'
-     and (tg_op = 'INSERT' or old.status <> 'published') then
-    new.approved_by := auth.uid(); new.approved_at := now();
+  if tg_op in ('INSERT', 'UPDATE') and tg_table_name = 'public_notices' then
+    if new.status = 'published' and (tg_op = 'INSERT' or (to_jsonb(old) ->> 'status') <> 'published') then
+      new.approved_by := auth.uid(); new.approved_at := now();
+    end if;
   end if;
   insert into public.resource_update_logs (actor_id, table_name, row_id, action, details)
   values (auth.uid(), tg_table_name, rid, lower(tg_op),
