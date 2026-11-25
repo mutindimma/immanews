@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advertising Management · IMMA News</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="ads.css">
+  <link rel="stylesheet" href="advertise.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html" class="logo" aria-label="IMMA News home"><img src="images/imma-news-emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>NEWS</i></span></a>
+      <div class="top-links">
+        <a href="index.html">View site</a>
+        <a href="advertise.html" class="adv-link">Advertise page</a>
+        <a href="signin.html" data-auth-link>Sign in</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap dash">
+    <p class="account-loading" id="loading">Checking your access…</p>
+    <section class="card" id="denied" hidden>
+      <h1>Advertising Management</h1>
+      <p id="denied-msg" class="muted"></p>
+    </section>
+
+    <section id="dash" hidden>
+      <div class="dash-head">
+        <div><p class="kicker dark">IMMA Media · Admin</p><h1>Advertising Management</h1><p class="dash-sub" id="sched"></p></div>
+        <button class="btn-gold" type="button" data-go="create">+ Create advert</button>
+      </div>
+      <div class="dash-layout">
+        <nav class="dash-nav" aria-label="Admin sections">
+          <button type="button" data-go="overview" class="on">Overview</button>
+          <button type="button" data-go="approvals">Pending approvals <span class="count" id="c-appr"></span></button>
+          <button type="button" data-go="campaigns">Campaigns</button>
+          <button type="button" data-go="sponsored">Sponsored articles</button>
+          <button type="button" data-go="advertisers">Advertisers</button>
+          <button type="button" data-go="payments">Payments &amp; invoices <span class="count" id="c-pay"></span></button>
+          <button type="button" data-go="revenue">Revenue reports</button>
+          <button type="button" data-go="analytics">Analytics</button>
+          <button type="button" data-go="placements">Placements &amp; prices</button>
+          <button type="button" data-go="packages">Packages</button>
+          <button type="button" data-go="discounts">Discount codes</button>
+          <button type="button" data-go="enquiries">Enquiries <span class="count" id="c-enq"></span></button>
+          <button type="button" data-go="audit">Audit log</button>
+          <button type="button" data-go="settings">Settings</button>
+        </nav>
+        <div class="dash-panel" id="panel"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="dlg" id="dlg"><div class="dlg-head"><h2 id="dlg-title"></h2><button class="dlg-close" type="button" aria-label="Close" data-close>✕</button></div><div class="dlg-body" id="dlg-body"></div></dialog>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="config.js"></script>
+  <script src="news.js"></script>
+  <script src="series-feed.js"></script>
+  <script src="series-feed-merge.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="auth.js"></script>
+  <script src="ads.js"></script>
+  <script src="ads-common.js"></script>
+  <script src="ads-admin.js"></script>
+</body>
+</html>

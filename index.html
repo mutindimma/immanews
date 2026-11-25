@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="pages.css">
   <link rel="stylesheet" href="series.css">
+  <link rel="stylesheet" href="ads.css">
 </head>
 <body>
   <!-- Top bar: logo + big search -->
@@ -35,6 +36,7 @@
       </form>
       <div class="top-links">
         <a href="about.html">About Us</a>
+        <a href="advertise.html" class="adv-link">Advertise</a>
         <a href="signin.html" data-auth-link>Sign in</a>
         <a href="contact.html" class="pill">Contact</a>
       </div>
@@ -56,6 +58,8 @@
     </div>
   </div>
 
+  <div class="ad-band"><div class="ad-slot ad-slot--top" data-ad-slot="top_leaderboard"><span class="ad-label">&nbsp;</span><div class="ad-frame"></div></div></div>
+
   <main class="wrap layout">
     <!-- Main column -->
     <div class="main-col">
@@ -64,8 +68,11 @@
       <!-- Before They Became Famous: latest edition (filled by series.js) -->
       <section class="bf-home" id="bf-home" aria-label="Before They Became Famous" hidden></section>
 
+      <div class="ad-slot ad-slot--premium" data-ad-slot="home_premium" hidden></div>
+
       <section class="stream" id="news">
         <h2 class="block-title">Latest Stories <span id="stream-label"></span></h2>
+        <div class="ad-slot ad-slot--category" id="ad-category" data-ad-slot="category_banner" hidden></div>
         <div id="news-grid"></div>
         <p class="empty" id="empty" hidden>No stories match your search.</p>
       </section>
@@ -77,6 +84,8 @@
         <h3 class="panel-title">Trending Now</h3>
         <ol class="trending" id="trending"></ol>
       </section>
+
+      <div class="ad-slot ad-slot--side" data-ad-slot="sidebar"><span class="ad-label">&nbsp;</span><div class="ad-frame"></div></div>
 
       <section class="panel weather loading" id="weather">
         <h3 class="panel-title">Weather <small>live</small></h3>
@@ -107,6 +116,8 @@
           <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a></p>
       </section>
 
+      <div class="ad-slot ad-slot--side-lg" data-ad-slot="sidebar_large" hidden></div>
+
       <section class="panel" id="info">
         <h3 class="panel-title">Useful Information</h3>
         <ul class="info-list">
@@ -131,10 +142,12 @@
     <div id="reader-body"></div>
   </dialog>
 
+  <div class="wrap"><div class="ad-slot ad-slot--footer" data-ad-slot="footer_banner"><span class="ad-label">&nbsp;</span><div class="ad-frame"></div></div></div>
+
   <footer class="footer">
     <div class="wrap footer-inner">
       <a href="#" class="footer-logo"><img src="images/imma-news-logo.png" alt="IMMA News"></a>
-      <nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="about.html#editorial">Editorial Standards</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+      <nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="advertise.html">Advertise With Us</a><a href="about.html#editorial">Editorial Standards</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
       <p class="owner">A publication of <img src="images/imma-media-logo.png" alt="IMMA Media"></p>
       <p>© <span id="year"></span> IMMA Media · Content • Broadcast • Production. IMMA News is owned and published by IMMA Media.</p>
     </div>
@@ -153,5 +166,6 @@
   <script src="site.js"></script>
   <script src="series.js"></script>
   <script src="election.js"></script>
+  <script src="ads.js"></script>
 </body>
 </html>

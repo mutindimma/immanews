@@ -93,6 +93,7 @@ def head(title, desc, url, image, image_alt, extra="", noindex=False, og_type="w
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/pages.css">
   <link rel="stylesheet" href="/series.css">
+  <link rel="stylesheet" href="/ads.css">
 {extra}</head>
 <body class="bf">
   <header class="topbar">
@@ -104,6 +105,7 @@ def head(title, desc, url, image, image_alt, extra="", noindex=False, og_type="w
       </form>
       <div class="top-links">
         <a href="/about.html">About Us</a>
+        <a href="/advertise.html" class="adv-link">Advertise</a>
         <a href="/signin.html" data-auth-link>Sign in</a>
         <a href="/contact.html" class="pill">Contact</a>
       </div>
@@ -114,10 +116,12 @@ def head(title, desc, url, image, image_alt, extra="", noindex=False, og_type="w
 
 
 FOOT = '''
+  <div class="wrap"><div class="ad-slot ad-slot--footer" data-ad-slot="footer_banner"><span class="ad-label">&nbsp;</span><div class="ad-frame"></div></div></div>
+
   <footer class="footer">
     <div class="wrap footer-inner">
       <a href="/index.html" class="footer-logo"><img src="/images/imma-news-logo.png" alt="IMMA News"></a>
-      <nav aria-label="Footer"><a href="/about.html">About Us</a><a href="/contact.html">Contact</a><a href="/about.html#editorial">Editorial Standards</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
+      <nav aria-label="Footer"><a href="/about.html">About Us</a><a href="/contact.html">Contact</a><a href="/advertise.html">Advertise With Us</a><a href="/about.html#editorial">Editorial Standards</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav>
       <p class="owner">A publication of <img src="/images/imma-media-logo.png" alt="IMMA Media"></p>
       <p>© <span id="year"></span> IMMA Media · Content • Broadcast • Production. IMMA News is owned and published by IMMA Media.</p>
     </div>
@@ -130,6 +134,7 @@ FOOT = '''
   <script src="/auth.js"></script>
   <script src="/site.js"></script>
   <script src="/series.js"></script>
+  <script src="/ads.js"></script>
 </body>
 </html>
 '''

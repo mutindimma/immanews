@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /ads-admin.html
+Disallow: /advertiser.html
+Disallow: /invoice.html
 
 Sitemap: https://immanews.com/sitemap.xml
