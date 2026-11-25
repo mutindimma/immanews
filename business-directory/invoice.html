@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Directory invoice · IMMA Media</title>
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <meta name="robots" content="noindex">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy: #04163a; --gold: #f5b003; --muted: #55607a; --line: #dce4f0; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #eef2f8; font: 15px/1.5 "Playfair Display", Georgia, "Times New Roman", serif; color: #0a1630; }
+    .bar { max-width: 820px; margin: 20px auto 0; display: flex; gap: 10px; justify-content: flex-end; padding: 0 16px; }
+    .bar button, .bar a { padding: 10px 18px; border-radius: 99px; border: 0; font: 700 .9rem "Playfair Display", Georgia, "Times New Roman", serif; cursor: pointer; background: var(--gold); color: var(--navy); text-decoration: none; }
+    .bar a { background: #fff; border: 1px solid var(--line); }
+    .doc { max-width: 820px; margin: 16px auto 40px; background: #fff; border-radius: 12px; padding: 44px; box-shadow: 0 10px 30px rgba(4,22,58,.08); }
+    .top { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; border-bottom: 4px solid var(--gold); padding-bottom: 20px; }
+    .top img { height: 90px; }
+    .title { text-align: right; }
+    .title h1 { margin: 0; font-size: 1.8rem; letter-spacing: .08em; }
+    .title p { margin: 2px 0; color: var(--muted); }
+    .paid { display: inline-block; margin-top: 8px; padding: 4px 12px; border: 2px solid #0f8a4a; color: #0f8a4a; border-radius: 6px; font-weight: 800; letter-spacing: .1em; }
+    .unpaid { border-color: #d1302f; color: #d1302f; }
+    .parties { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 26px 0; }
+    .parties h3 { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+    .parties p { margin: 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: #f5f7fb; }
+    td.r, th.r { text-align: right; }
+    .totals { margin-left: auto; width: min(320px, 100%); margin-top: 14px; }
+    .totals div { display: flex; justify-content: space-between; padding: 6px 10px; }
+    .totals .grand { border-top: 2px solid var(--navy); font-weight: 800; font-size: 1.1rem; }
+    .pay { margin-top: 26px; padding: 16px; background: #f5f7fb; border-radius: 10px; }
+    .foot { margin-top: 30px; color: var(--muted); font-size: .85rem; text-align: center; border-top: 1px solid var(--line); padding-top: 16px; }
+    .msg { max-width: 820px; margin: 60px auto; text-align: center; color: var(--muted); }
+    @media print { body { background: #fff; } .bar { display: none; } .doc { box-shadow: none; margin: 0; padding: 0; } }
+    @media (max-width: 600px) { .doc { padding: 22px; } .top, .parties { display: block; } .title { text-align: left; margin-top: 14px; } }
+  </style>
+</head>
+<body>
+  <div class="bar"><a href="/business-directory/dashboard.html?tab=billing">Back to dashboard</a><button type="button" onclick="window.print()">Print / Save as PDF</button></div>
+  <div id="out"><p class="msg">Loading…</p></div>
+
+  <script src="/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="/auth.js"></script>
+  <script src="/directory-common.js"></script>
+  <script>
+    // IMMA Business Directory invoice / receipt. Readable only by the business's managers and administrators.
+    (() => {
+      const A = window.IMMA_AUTH, D = window.IMMA_DIR, { esc, kes, date } = D;
+      const out = document.getElementById("out");
+      const id = new URLSearchParams(location.search).get("id");
+      A.onChange(async (user) => {
+        if (!user) { location.replace("/signin.html?next=" + encodeURIComponent(location.pathname + location.search)); return; }
+        const db = A.client;
+        const { data: inv } = await db.from("business_invoices").select("*, business_subscriptions(*), businesses(name, email, phone, slug)").eq("id", id).maybeSingle();
+        if (!inv) { out.innerHTML = '<p class="msg">This invoice was not found, or you do not have access to it.</p>'; return; }
+        const { data: st } = await db.from("ad_settings").select("key,value");
+        const set = Object.fromEntries((st || []).map((r) => [r.key, r.value]));
+        const { data: pays } = await db.from("business_payments").select("*").eq("subscription_id", inv.subscription_id).eq("status", "confirmed");
+        const s = inv.business_subscriptions || {}, b = inv.businesses || {};
+        const isReceipt = inv.status === "paid";
+        document.title = (isReceipt ? "Receipt " + (inv.receipt_number || inv.number) : "Invoice " + inv.number) + " · IMMA Media";
+        out.innerHTML = `
+          <div class="doc">
+            <div class="top">
+              <div><img src="/images/imma-media-logo.png" alt="IMMA Media"><p style="margin:8px 0 0;color:var(--muted)">IMMA Business Directory · immanews.com</p></div>
+              <div class="title">
+                <h1>${isReceipt ? "RECEIPT" : "INVOICE"}</h1>
+                <p><b>${esc(isReceipt ? inv.receipt_number || inv.number : inv.number)}</b></p>
+                ${isReceipt ? `<p>Invoice ${esc(inv.number)}</p><p>Paid ${esc(date(inv.paid_at))}</p>` : `<p>Issued ${esc(date(inv.issued_at))}</p>${inv.due_date ? `<p>Due ${esc(date(inv.due_date))}</p>` : ""}`}
+                <span class="paid ${isReceipt ? "" : "unpaid"}">${isReceipt ? "PAID" : inv.status === "void" ? "VOID" : "UNPAID"}</span>
+              </div>
+            </div>
+            <div class="parties">
+              <div><h3>From</h3><p><b>IMMA Media</b><br>Nairobi, Kenya<br>+254 785 887 830</p></div>
+              <div><h3>${isReceipt ? "Received from" : "Bill to"}</h3><p><b>${esc(b.name || "")}</b>${b.email ? "<br>" + esc(b.email) : ""}${b.phone ? "<br>" + esc(b.phone) : ""}</p></div>
+            </div>
+            <table>
+              <thead><tr><th>Description</th><th>Period</th><th class="r">Amount</th></tr></thead>
+              <tbody><tr><td><b>${esc(inv.description)}</b></td><td>${s.starts_on ? esc(date(s.starts_on)) + " – " + esc(date(s.ends_on)) : (s.billing === "annual" ? "12 months from payment" : "1 month from payment")}</td><td class="r">${esc(kes(inv.list_price_kes))}</td></tr></tbody>
+            </table>
+            <div class="totals">
+              <div><span>Subtotal</span><span>${esc(kes(inv.list_price_kes))}</span></div>
+              ${Number(inv.discount_kes) ? `<div><span>Discount${s.discount_code ? " (" + esc(s.discount_code) + ")" : ""}</span><span>− ${esc(kes(inv.discount_kes))}</span></div>` : ""}
+              <div class="grand"><span>Total</span><span>${esc(kes(inv.amount_kes))}</span></div>
+              ${isReceipt ? `<div><span>Paid</span><span>${esc(kes((pays || []).reduce((n, p) => n + Number(p.amount_kes), 0)))}</span></div>` : ""}
+            </div>
+            ${isReceipt && pays && pays.length ? `<div class="pay"><b>Payment received</b><br>${pays.map((p) => `${p.method === "mpesa_manual" ? "M-Pesa" : p.method === "bank_transfer" ? "Bank transfer" : esc(p.method)} · ${esc(p.reference)} · ${esc(kes(p.amount_kes))} · ${esc(date(p.verified_at || p.created_at))}`).join("<br>")}</div>` : ""}
+            ${inv.status === "unpaid" ? `<div class="pay"><b>How to pay</b><br>${esc(set.payment_instructions || "")}${set.mpesa_paybill ? `<br>M-Pesa Paybill/Till: <b>${esc(set.mpesa_paybill)}</b>${set.mpesa_account ? `, account <b>${esc(set.mpesa_account)}</b>` : ""}` : ""}${set.bank_details ? `<br>Bank: ${esc(set.bank_details)}` : ""}<br>Please quote <b>${esc(inv.number)}</b>, then enter your confirmation code in your dashboard.</div>` : ""}
+            <p class="foot">${esc(set.vat_note || "")}<br>${esc(set.invoice_footer || "IMMA Media · Nairobi, Kenya")}</p>
+          </div>`;
+      });
+    })();
+  </script>
+</body>
+</html>

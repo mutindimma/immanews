@@ -30,12 +30,20 @@
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/pages.css">
   <link rel="stylesheet" href="/footer.css">
+  <script>
+    // Business listings approved since the last site build: show them live instead of "not found"
+    (function () {
+      var m = /^\/business-directory\/([a-z0-9-]{2,80})\/?$/.exec(location.pathname);
+      if (m && m[1] !== "listing") location.replace("/business-directory/listing.html?s=" + m[1]);
+    })();
+  </script>
 </head>
 <body>
   <header class="topbar">
     <div class="wrap topbar-inner">
       <a href="/" class="logo" aria-label="IMMA News home"><img src="/images/imma-news-emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>NEWS</i></span></a>
       <div class="top-links">
+        <a href="/business-directory/" class="dir-link">Business Directory</a>
         <a href="/about.html">About Us</a>
         <a href="/advertise.html" class="adv-link">Advertise</a>
         <a href="/contact.html" class="pill">Contact</a>
@@ -91,7 +99,7 @@
     </div><div class="sf-col">
       <h2 class="sf-col-title">Work With Us</h2>
       <button class="sf-col-toggle" type="button" aria-expanded="false" aria-controls="sf-col-2">Work With Us<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <ul id="sf-col-2"><li><a href="/advertise.html">Advertise With Us</a></li><li><a href="/advertise.html#placements">Advertising Rate Card</a></li><li><a href="/advertise.html#sponsored">Sponsored Content</a></li><li><a href="/contact.html?type=partnership">Media Partnerships</a></li><li><a href="/contact.html?type=tip">Submit a News Tip</a></li></ul>
+      <ul id="sf-col-2"><li><a href="/advertise.html">Advertise With Us</a></li><li><a href="/advertise.html#placements">Advertising Rate Card</a></li><li><a href="/advertise.html#sponsored">Sponsored Content</a></li><li><a href="/business-directory/">Business Directory</a></li><li><a href="/business-directory/register.html">List Your Business</a></li><li><a href="/contact.html?type=partnership">Media Partnerships</a></li><li><a href="/contact.html?type=tip">Submit a News Tip</a></li></ul>
     </div><div class="sf-col">
       <h2 class="sf-col-title">About &amp; Support</h2>
       <button class="sf-col-toggle" type="button" aria-expanded="false" aria-controls="sf-col-3">About &amp; Support<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>

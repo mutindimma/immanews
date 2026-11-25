@@ -26,6 +26,10 @@ Disallow: /invoice.html
 Disallow: /account.html
 Disallow: /unsubscribe.html
 Disallow: /signin.html
+Disallow: /directory-admin.html
+Disallow: /business-directory/dashboard.html
+Disallow: /business-directory/invoice.html
+Disallow: /business-directory/listing.html
 
 Sitemap: https://immanews.com/sitemap.xml
 Sitemap: https://immanews.com/news-sitemap.xml

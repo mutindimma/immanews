@@ -296,6 +296,7 @@ const SCRIPTS = (inlineJs = "") => `
   <script src="/auth.js" defer></script>
   <script src="/site.js" defer></script>
   <script src="/ads.js" defer></script>
+  <script src="/directory-widget.js" defer></script>
   <script src="/footer.js"></script>${inlineJs}
 </body>
 </html>
@@ -315,6 +316,21 @@ function related(s) {
   const same = stories.filter((o) => o !== s && o.category === s.category);
   const other = stories.filter((o) => o !== s && o.category !== s.category);
   return [...same.slice(0, 3), ...other].slice(0, 4);
+}
+
+// Related local businesses from the IMMA Business Directory (shown only when listings exist)
+function dirWidget(s) {
+  const t = (s.title + " " + (s.summary || "")).toLowerCase();
+  let cats = null, title = "Discover Local Businesses";
+  if (/meal|recipe|food|cook|bak|cake|nutrition|diet/.test(t)) { cats = "restaurants,bakeries,groceries"; title = "Local food businesses"; }
+  else if (s.category === "Health") { cats = "clinics,pharmacies,wellness,fitness"; title = "Local health providers"; }
+  else if (s.category === "Travel") { cats = "hotels,travel,transport"; title = "Hotels and travel services"; }
+  else if (/school|education|university|college|exam/.test(t)) { cats = "schools"; title = "Schools and training"; }
+  else if (/property|land|housing|rent|real estate/.test(t)) { cats = "real-estate,construction"; title = "Property services"; }
+  else if (s.category === "Sports") { cats = "fitness"; title = "Gyms and sports"; }
+  if (!cats) return "";
+  return `
+    <section class="wrap" data-bd-widget data-cats="${cats}" data-title="${esc(title)}" aria-label="${esc(title)}" hidden></section>`;
 }
 
 // ---------- story page ----------
@@ -404,6 +420,7 @@ ${sources.length ? `
       </section>` : ""}
 ${authorBox(a)}
     </article>
+${dirWidget(s)}
 
     <aside class="bf-more wrap" aria-labelledby="more-title">
       <h2 id="more-title">More from IMMA News</h2>
