@@ -45,7 +45,7 @@
 |---|---|
 | `supabase/directory.sql` | Run on 25 Nov 2026 |
 | `supabase/directory-seed.sql` | Run on 25 Nov 2026. Adds the 30 categories, 139 subcategories and the Patricia Bakes draft. |
-| `supabase/directory-tests.sql` | Rollback-only. **All 56 checks passed.** |
+| `supabase/directory-tests.sql` | Rollback-only. **All 60 checks passed.** |
 
 ### Tables (23)
 
@@ -126,16 +126,16 @@ None are new. The directory uses the existing public Supabase URL and anon key i
   * landing pages, sitemap entries
   * noindex for search-result pages and very thin listings
 
-**Tested:**
-* database security (56 checks)
-* public pages on the live database (desktop and phone)
-* search and filters
-* the start of registration
+**Tested on the live site on 25 Nov 2026.** A clearly labelled test listing was created, run through every step below, then deleted along with its photos, review, enquiry and test payment.
 
-**Not yet tested live, because Chrome was signed out of immanews.com:**
-* saving the registration wizard and uploading photos
-* the owner dashboard
-* the admin screen
+* Registration: validation messages, draft saving, logo and gallery uploads to storage, products with a photo, services and opening hours, discount-code rejection, the server-side price, the terms check, submission and the invoice.
+* Admin: approving a listing, adding a manager, confirming a payment, moderating a review, and deleting a listing (its billing records are kept).
+* Package gating: on Free, the website, photos, catalogue and hours stayed hidden. After the payment was confirmed, Standard showed them.
+* Privacy: the private address and map pin stayed hidden.
+* WhatsApp ordering message.
+* Owner dashboard: real counts (view, WhatsApp tap, enquiry) and the chart, enquiries, review reply, billing, and the receipt PDF page.
+* Page generator: Bakery schema with real rating, offer and hours data, landing pages, and removal of stale pages.
+* Database: **60 security checks pass**.
 
 ## Needs you
 
