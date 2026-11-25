@@ -184,5 +184,54 @@ dialog.dlg::backdrop { background: rgba(4,22,58,.55); }
   .kv { grid-template-columns: 1fr; }
 }
 @media print {
-  .topbar, .footer, .no-print { display: none !important; }
+  .topbar, .footer, .sf, .sf-cta, .no-print { display: none !important; }
 }
+
+/* ---------- Footer & newsletter settings (footer-admin.js) ---------- */
+.dash-nav-link { padding: 10px 12px; border-radius: 8px; font: 600 .93rem Inter, sans-serif; color: var(--muted); border-top: 1px solid var(--line); margin-top: 6px; }
+.dash-nav-link:hover { background: var(--soft); color: var(--text); }
+.fs-head { margin-bottom: 0; }
+.fs-title { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 800; margin: 6px 0 0; }
+.fs-card { display: grid; gap: 14px; }
+.fs-card h2 { margin-bottom: 0; }
+.fs-card h3 { margin: 8px 0 0; }
+.fs-card > .small.muted { margin: -6px 0 0; }
+.fs-check { display: flex; align-items: center; gap: 10px; font-weight: 600; cursor: pointer; }
+.fs-check input { width: 18px; height: 18px; accent-color: var(--brand); }
+.fs-email { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: end; }
+.fs-email .fs-check { padding-bottom: 12px; font-weight: 500; font-size: .9rem; }
+.fs-logo-prev img { max-height: 90px; width: auto; padding: 10px 16px; border-radius: 8px; }
+.fs-logo-prev { margin: -4px 0 0; }
+.fs-col { border: 1px solid var(--line); border-radius: 12px; padding: 14px; display: grid; gap: 10px; }
+.fs-col-head { display: flex; gap: 12px; align-items: end; }
+.fs-col-head .field { flex: 1; }
+.fs-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; counter-reset: fs; }
+.fs-link { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr) auto; gap: 8px; align-items: center; }
+.fs-link input, .fs-link select { width: 100%; padding: 9px 10px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); font: inherit; font-size: .9rem; min-width: 0; }
+.fs-row-btns { display: inline-flex; gap: 4px; }
+.fs-icon { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--text); cursor: pointer; font-weight: 700; }
+.fs-icon:hover:not(:disabled) { background: var(--soft); }
+.fs-icon:disabled { opacity: .35; cursor: default; }
+.fs-del:hover:not(:disabled) { background: #fde8e8; color: #8a1c1c; border-color: #f3b4b4; }
+.fs-small-btn { justify-self: start; padding: 8px 14px; font-size: .88rem; }
+.fs-colors { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+.fs-color { display: flex; align-items: center; gap: 10px; }
+.fs-color input[type=color] { width: 48px; height: 40px; padding: 2px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); cursor: pointer; }
+.fs-good { color: #0b5d31; }
+.fs-bad { color: #a11d1d; font-weight: 600; }
+.fs-preview { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.fs-preview .sf-cta { margin-top: 0; }
+.fs-savebar { position: sticky; bottom: 12px; z-index: 5; display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; box-shadow: 0 8px 24px rgba(4, 22, 58, .12); }
+.fs-savebar #fs-dirty { margin-right: auto; }
+#fs-errors ul { margin: 6px 0 0; padding-left: 20px; }
+.fs-stats { display: flex; gap: 14px; flex-wrap: wrap; }
+.fs-stats div { background: var(--soft); border-radius: 10px; padding: 12px 18px; min-width: 130px; }
+.fs-stats b { display: block; font-size: 1.6rem; line-height: 1.1; }
+.fs-stats span { color: var(--muted); font-size: .85rem; }
+@media (max-width: 760px) {
+  .fs-link { grid-template-columns: 1fr 1fr; }
+  .fs-link select { grid-column: 1; }
+  .fs-email { grid-template-columns: 1fr; }
+  .fs-email .fs-check { padding-bottom: 0; }
+}
+@media (prefers-color-scheme: dark) { .fs-good { color: #8fe3b0; } .fs-bad { color: #ffaba5; } }

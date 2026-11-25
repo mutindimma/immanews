@@ -11,9 +11,12 @@
   const device = () => (isMobile() ? "mobile" : "desktop");
   const advertiseUrl = "/advertise.html";
 
+  // Readers can switch advert measurement off in Cookie Settings (footer.js stores the choice)
+  const measureOff = () => { try { return (JSON.parse(localStorage.getItem("imma_prefs_v1")) || {}).adMeasure === false; } catch (e) { return false; } };
+
   // Visitor session id for de-duplicating views/clicks (random, not linked to the person)
   let session = "";
-  try {
+  if (!measureOff()) try {
     session = sessionStorage.getItem("imma_ad_sid") || "";
     if (!session) { session = crypto.randomUUID().replace(/-/g, ""); sessionStorage.setItem("imma_ad_sid", session); }
   } catch (e) { session = Math.random().toString(36).slice(2) + Date.now().toString(36); }
@@ -25,7 +28,8 @@
     body: JSON.stringify(body || {})
   });
   function track(creative, event) {
-    if (looksAutomated || !creative) return;
+    if (looksAutomated || !creative || measureOff()) return;
+    if (!session) { try { session = sessionStorage.getItem("imma_ad_sid") || crypto.randomUUID().replace(/-/g, ""); sessionStorage.setItem("imma_ad_sid", session); } catch (e) { session = Math.random().toString(36).slice(2); } }
     rpc("ad_track", { p_creative: creative, p_event: event, p_session: session, p_device: device() }, event === "click").catch(() => {});
   }
 

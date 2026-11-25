@@ -4,7 +4,7 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&
 const idx = (s) => NEWS.indexOf(s);
 const pic = (s) => esc(s.image || "images/placeholder.svg");
 
-$("#year").textContent = new Date().getFullYear();
+document.querySelectorAll("#year, [data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
 const stories = [...NEWS].sort((a, b) => b.date.localeCompare(a.date));
 const featured = stories.find((s) => s.featured) || stories[0];

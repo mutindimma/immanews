@@ -228,3 +228,20 @@ a.chip { display: inline-block; text-decoration: none; }
   .perspective { padding: 28px 22px; }
   .contact-form-card { padding: 20px; }
 }
+
+/* ---------- FAQ, sitemap and unsubscribe pages ---------- */
+.faq-list { display: grid; gap: 10px; }
+.faq-item { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 2px 18px; }
+.faq-item summary { cursor: pointer; font-weight: 700; padding: 14px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; color: var(--accent); font-size: 1.3rem; line-height: 1; }
+.faq-item[open] summary::after { content: "–"; }
+.faq-item p { margin: 0 0 16px; color: var(--muted); }
+.legal.sitemap-page, .sitemap-grid { max-width: none; }
+.sitemap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px 32px; }
+.sitemap-grid h2 { font-size: 1.05rem; }
+.sitemap-grid ul { list-style: none; padding: 0; margin: 0; }
+.unsub-card { background: var(--soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; max-width: 520px; }
+.imma-media-pillars { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: .85rem !important; color: var(--muted); }
+.imma-media-pillars img { width: 120px; height: auto; }
+@media (prefers-color-scheme: dark) { .imma-media-pillars img { background: #fff; border-radius: 8px; padding: 4px 8px; } }
