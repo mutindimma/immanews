@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Useful Information · Admin · IMMA News</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="advertise.css">
+  <link rel="stylesheet" href="resources.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html" class="logo" aria-label="IMMA News home"><img src="images/imma-news-emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>NEWS</i></span></a>
+      <div class="top-links">
+        <a href="resources.html">View resource centre</a>
+        <a href="ads-admin.html">Advertising admin</a>
+        <a href="signin.html" data-auth-link>Sign in</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap dash">
+    <p class="account-loading" id="loading">Checking your access…</p>
+    <section class="card" id="denied" hidden><h1>Useful Information admin</h1><p id="denied-msg" class="muted"></p></section>
+
+    <section id="dash" hidden>
+      <div class="dash-head">
+        <div><p class="kicker dark">IMMA Media · Admin</p><h1>Useful Information</h1><p class="dash-sub" id="hk"></p></div>
+        <a class="btn-outline" href="resources.html" target="_blank">Open public page ↗</a>
+      </div>
+      <div class="dash-layout">
+        <nav class="dash-nav" aria-label="Sections" id="nav"></nav>
+        <div class="dash-panel" id="panel"></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="dlg" id="dlg"><div class="dlg-head"><h2 id="dlg-title"></h2><button class="dlg-close" type="button" aria-label="Close" data-close>✕</button></div><div class="dlg-body" id="dlg-body"></div></dialog>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="auth.js"></script>
+  <script src="ads-common.js"></script>
+  <script src="resources-admin.js"></script>
+</body>
+</html>

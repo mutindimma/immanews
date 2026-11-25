@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kenya at Your Fingertips · IMMA News</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="description" content="Essential information, government services and practical resources for everyday life in Kenya: IDs, passports, KRA, SHA, emergency numbers, fuel prices, school calendar, scholarships and more.">
+  <link rel="canonical" href="https://immanews.com/resources.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="IMMA News">
+  <meta property="og:title" content="Kenya at Your Fingertips · IMMA News">
+  <meta property="og:description" content="Essential information, government services and practical resources for everyday life in Kenya.">
+  <meta property="og:url" content="https://immanews.com/resources.html">
+  <meta property="og:image" content="https://immanews.com/images/og-image.png">
+  <meta name="theme-color" content="#04163a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="ads.css">
+  <link rel="stylesheet" href="resources.css">
+</head>
+<body data-page="hub">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html" class="logo" aria-label="IMMA News home"><img src="images/imma-news-emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>NEWS</i></span></a>
+      <form class="searchbox" action="index.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Search the news" aria-label="Search the news">
+        <button type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+        </button>
+      </form>
+      <div class="top-links">
+        <a href="about.html">About Us</a>
+        <a href="advertise.html" class="adv-link">Advertise</a>
+        <a href="signin.html" data-auth-link>Sign in</a>
+        <a href="contact.html" class="pill">Contact</a>
+      </div>
+    </div>
+    <nav class="catbar" aria-label="News categories"><div class="wrap catbar-inner" id="filters" data-links></div></nav>
+  </header>
+
+  <main>
+    <section class="page-hero rc-hero">
+      <div class="wrap">
+        <p class="kicker">Kenya Citizen Resource Centre</p>
+        <h1 id="rc-title">Kenya at Your Fingertips</h1>
+        <p class="hero-lead" id="rc-sub">Essential information, government services and practical resources for everyday life in Kenya.</p>
+        <form class="rc-search" id="rc-search" role="search">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+          <input type="search" id="rc-q" placeholder="Search: passport, KRA PIN, SHA, fuel prices, HELB…" aria-label="Search public information" autocomplete="off">
+          <button type="submit" class="btn-gold">Search</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Emergency numbers: always visible, never behind a paywall or sign-in -->
+    <section class="wrap rc-emergency" aria-labelledby="em-title">
+      <div class="em-head"><h2 id="em-title"><span aria-hidden="true">🚨</span> Emergency numbers</h2><span class="muted small">Free to call. Tap to dial on your phone.</span></div>
+      <div class="em-grid" id="em-grid"></div>
+      <p class="small muted" id="em-checked"></p>
+    </section>
+
+    <div class="wrap rc-layout">
+      <div class="rc-main">
+        <nav class="rc-cats" id="rc-cats" aria-label="Resource categories"></nav>
+
+        <div class="rc-filters" id="rc-filters">
+          <div class="chips" id="rc-chips" role="tablist" aria-label="Filter by category"></div>
+          <label class="county-filter"><span>County</span>
+            <select id="rc-county" aria-label="Filter by county"><option value="">All of Kenya</option></select></label>
+        </div>
+
+        <div class="ad-slot ad-slot--category" id="rc-ad" data-ad-wait="category_banner" hidden></div>
+
+        <section id="rc-tools"></section>
+
+        <section aria-live="polite">
+          <h2 class="block-title" id="rc-list-title">All resources</h2>
+          <div class="rc-grid" id="rc-grid"><p class="muted">Loading resources…</p></div>
+        </section>
+
+        <p class="rc-more" id="rc-more"></p>
+      </div>
+
+      <aside class="rc-side">
+        <section class="panel">
+          <h3 class="panel-title">Latest public notices</h3>
+          <ul class="notice-list" id="rc-notices"><li class="muted">Loading…</li></ul>
+        </section>
+        <div class="ad-slot ad-slot--side" data-ad-slot="sidebar" id="rc-side-ad"><span class="ad-label">&nbsp;</span><div class="ad-frame"></div></div>
+        <section class="panel">
+          <h3 class="panel-title">Something wrong or out of date?</h3>
+          <p class="small muted">Tell us and we will check it with the official source.</p>
+          <a class="btn-outline btn-sm" href="contact.html?type=correction">Report a correction</a>
+        </section>
+      </aside>
+    </div>
+
+    <section class="wrap rc-disclaimer" role="note">
+      <p><b>Disclaimer:</b> IMMA News provides independent public information for general guidance. We are not affiliated with the Government of Kenya. Readers should confirm fees, requirements, deadlines and service availability with the relevant official institution.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a href="index.html" class="footer-logo"><img src="images/imma-news-logo.png" alt="IMMA News"></a>
+      <nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="resources.html">Kenya at Your Fingertips</a><a href="advertise.html">Advertise With Us</a><a href="about.html#editorial">Editorial Standards</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+      <p class="owner">A publication of <img src="images/imma-media-logo.png" alt="IMMA Media"></p>
+      <p>© <span id="year"></span> IMMA Media · Content • Broadcast • Production. IMMA News is owned and published by IMMA Media.</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="news.js"></script>
+  <script src="series-feed.js"></script>
+  <script src="series-feed-merge.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="site.js"></script>
+  <script src="auth.js"></script>
+  <script src="resources.js"></script>
+  <script src="ads.js"></script>
+</body>
+</html>

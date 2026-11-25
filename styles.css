@@ -247,3 +247,8 @@ dialog::backdrop { background: rgba(0,10,28,.7); }
 .reader-text th { background: var(--soft); font-weight: 700; }
 .reader-text td:not(:first-child), .reader-text th:not(:first-child) { text-align: right; white-space: nowrap; }
 .reader-text code { background: var(--soft); padding: 1px 5px; border-radius: 4px; }
+
+/* Useful Information panel links to the Citizen Resource Centre */
+.info-list a { color: inherit; display: flex; gap: 12px; align-items: flex-start; }
+.info-list a:hover b { color: var(--brand); text-decoration: underline; }
+.info-more { display: inline-block; margin-top: 10px; font-weight: 800; color: var(--brand); font-size: .92rem; }

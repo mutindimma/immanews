@@ -13,7 +13,7 @@
   const params = new URLSearchParams(location.search);
   const placement = (k) => S.placements.find((p) => p.key === k);
   const pkgById = (id) => S.packages.find((p) => p.id === id);
-  const categories = () => [...new Set((typeof NEWS !== "undefined" ? NEWS : []).map((n) => n.category))].sort();
+  const categories = () => [...new Set([...(typeof NEWS !== "undefined" ? NEWS : []).map((n) => n.category), "Public Services", "Health", "Travel", "Education"])].sort();
 
   // ---------- Loading ----------
   async function loadRefs() {

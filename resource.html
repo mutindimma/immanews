@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kenya at Your Fingertips · IMMA News</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <meta name="description" content="Step-by-step guidance on Kenyan public services, with official sources and the date we last checked.">
+  <meta name="theme-color" content="#04163a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="ads.css">
+  <link rel="stylesheet" href="resources.css">
+</head>
+<body data-page="guide">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="index.html" class="logo" aria-label="IMMA News home"><img src="images/imma-news-emblem.png" alt=""><span class="logo-text"><b>IMMA</b><i>NEWS</i></span></a>
+      <form class="searchbox" action="resources.html" method="get" role="search">
+        <input type="search" name="q" placeholder="Search public information" aria-label="Search public information">
+        <button type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+        </button>
+      </form>
+      <div class="top-links">
+        <a href="about.html">About Us</a>
+        <a href="advertise.html" class="adv-link">Advertise</a>
+        <a href="signin.html" data-auth-link>Sign in</a>
+        <a href="contact.html" class="pill">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap rc-guide-wrap">
+    <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"><a href="resources.html">Kenya at Your Fingertips</a></nav>
+    <div class="rc-guide-layout">
+      <article class="rc-guide" id="guide"><p class="muted">Loading…</p></article>
+      <aside class="rc-side">
+        <section class="panel em-mini">
+          <h3 class="panel-title">Emergency</h3>
+          <div class="em-mini-grid" id="em-mini"></div>
+        </section>
+        <div class="ad-slot ad-slot--side" id="guide-ad" data-ad-wait="sidebar"><span class="ad-label">&nbsp;</span><div class="ad-frame"></div></div>
+        <section class="panel"><h3 class="panel-title">Related</h3><ul class="related" id="related"></ul></section>
+      </aside>
+    </div>
+    <section class="rc-disclaimer" role="note">
+      <p><b>Disclaimer:</b> IMMA News provides independent public information for general guidance. We are not affiliated with the Government of Kenya. Readers should confirm fees, requirements, deadlines and service availability with the relevant official institution.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a href="index.html" class="footer-logo"><img src="images/imma-news-logo.png" alt="IMMA News"></a>
+      <nav aria-label="Footer"><a href="about.html">About Us</a><a href="contact.html">Contact</a><a href="resources.html">Kenya at Your Fingertips</a><a href="advertise.html">Advertise With Us</a><a href="about.html#editorial">Editorial Standards</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+      <p class="owner">A publication of <img src="images/imma-media-logo.png" alt="IMMA Media"></p>
+      <p>© <span id="year"></span> IMMA Media · Content • Broadcast • Production. IMMA News is owned and published by IMMA Media.</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="site.js"></script>
+  <script src="auth.js"></script>
+  <script src="resources.js"></script>
+  <script src="ads.js"></script>
+</body>
+</html>

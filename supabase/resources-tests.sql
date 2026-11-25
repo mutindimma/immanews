@@ -14,8 +14,11 @@ begin
   rep := rep || E'\n02 public sees no drafts/archived: ' || case when n = 0 then 'PASS' else 'FAIL' end;
   select count(*) into n from public.emergency_contacts;
   rep := rep || E'\n03 emergency numbers readable without sign-in: ' || n;
-  select count(*) into n from public.resource_update_logs;
-  rep := rep || E'\n04 public cannot read change log: ' || case when n = 0 then 'PASS' else 'FAIL' end;
+  begin
+    select count(*) into n from public.resource_update_logs;
+    rep := rep || E'\n04 public cannot read change log: ' || case when n = 0 then 'PASS' else 'FAIL' end;
+  exception when insufficient_privilege then rep := rep || E'\n04 public cannot read change log: PASS (permission denied)';
+  end;
   begin
     insert into public.public_notices (title, summary, source_name, source_url, status) values ('x', 'y', 'z', 'https://example.com', 'published');
     rep := rep || E'\n05 public cannot add notices: FAIL';

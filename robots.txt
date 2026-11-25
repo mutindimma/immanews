@@ -3,5 +3,6 @@ Allow: /
 Disallow: /ads-admin.html
 Disallow: /advertiser.html
 Disallow: /invoice.html
+Disallow: /resources-admin.html
 
 Sitemap: https://immanews.com/sitemap.xml

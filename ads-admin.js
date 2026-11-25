@@ -12,7 +12,7 @@
   const placement = (k) => S.placements.find((p) => p.key === k) || { name: k };
   const adv = (id) => S.advertisers.find((a) => a.id === id);
   const advName = (c) => c.is_house ? "IMMA Media (house)" : (adv(c.advertiser_id) || {}).business_name || "—";
-  const categories = () => [...new Set((typeof NEWS !== "undefined" ? NEWS : []).map((n) => n.category))].sort();
+  const categories = () => [...new Set([...(typeof NEWS !== "undefined" ? NEWS : []).map((n) => n.category), "Public Services", "Health", "Travel", "Education"])].sort();
   const toast = (msg, kind) => { const d = document.createElement("div"); d.className = "notice " + (kind || "ok"); d.textContent = msg; d.style.cssText = "position:fixed;right:16px;bottom:16px;z-index:9999;max-width:420px;box-shadow:0 10px 30px rgba(0,0,0,.2)"; document.body.appendChild(d); setTimeout(() => d.remove(), 4500); };
   const fail = (e) => toast(U.friendlyError(e), "bad");
 
