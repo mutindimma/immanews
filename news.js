@@ -16,6 +16,149 @@
 // ============================================================
 const NEWS = [
   {
+    title: "eCitizen Users Told to Change Passwords as Government Probes Hacking Claim",
+    category: "Kenya",
+    date: "2026-11-25",
+    featured: true,
+    image: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?auto=format&fit=crop&w=1600&q=75",
+    caption: "Illustrative image: a smartphone showing a security lock. Photo: Dan Nelson / Unsplash.",
+    summary: "The State Department for Immigration and Citizen Services says it is investigating online reports that hackers took data from eCitizen. It has not confirmed a breach, but is urging users to switch to strong, unique passwords.",
+    body: `The government is investigating claims that hackers broke into eCitizen, the online portal Kenyans use for passports, business registration, permits and dozens of other state services.
+
+Investigation: The State Department for Immigration and Citizen Services said on Tuesday, November 24, that it had seen reports of unauthorised access to eCitizen data and that technical and security staff were working to establish how far any incident went. It has not confirmed that personal information was taken.
+
+The claim: The allegation comes from a hacking group calling itself ByteToBreach, which says it took about 740GB of files. According to technology outlets that reviewed the claim, the group says the haul includes roughly 600GB of identity documents collected for "know your customer" checks, around 100GB of database records and about 40GB of source code. None of these figures has been independently confirmed.
+
+What users should do: The department advised anyone who uses their eCitizen password on other websites to change it and pick a strong password that is not used anywhere else. It also warned that fraudsters may use the news to send fake phone calls, SMS, emails and web links that claim to come from eCitizen. Officials reminded the public that eCitizen will never ask for a password or a one-time PIN.
+
+Services running: The department said the platform remains available and Kenyans can keep using it as normal. It promised updates through official channels as the investigation continues and asked the public and the media not to spread unverified information.
+
+IMMA News will update this story when investigators release their findings.`,
+    sources: [
+      { name: "Kenyans.co.ke — Kenyans advised to change eCitizen passwords", url: "https://www.kenyans.co.ke/news/129647-kenyans-advised-change-ecitizen-passwords-after-reports-data-breach" },
+      { name: "The Star — Government investigates alleged eCitizen data breach", url: "https://www.the-star.co.ke/news/2026-11-24-state-probes-alleged-ecitizen-data-breach" },
+      { name: "Techweez — eCitizen named in unverified data breach allegation", url: "https://techweez.com/2026/11/24/ecitizen-data-breach-claim-bytetobreach/" }
+    ]
+  },
+  {
+    title: "KWS Begins Rhino-by-Rhino Count at Ol Pejeta After 17 Deaths",
+    category: "Kenya",
+    date: "2026-11-25",
+    image: "https://images.unsplash.com/photo-1790866268427-52d90d386804?auto=format&fit=crop&w=1600&q=75",
+    caption: "Illustrative image: a black rhino in the Maasai Mara, not at Ol Pejeta. Photo: Dmitrii Zhodzishskii / Unsplash.",
+    summary: "Wildlife officials have started an audit of the black rhinos at Ol Pejeta Conservancy in Laikipia after 17 died this year. The conservancy says none of the deaths was caused by poaching.",
+    body: `The Kenya Wildlife Service (KWS) has started a full audit of the black rhinos at Ol Pejeta Conservancy in Laikipia County after the conservancy recorded 17 rhino deaths in less than nine months.
+
+The audit: KWS Director General Prof Erustus Kanga launched the exercise on Tuesday, November 24, together with the Laikipia County Commissioner and the county police commander. Rhino experts from the state-run Wildlife Research and Training Institute (WRTI) are taking part, along with monitors from neighbouring conservancies including Lewa, Borana, Loisaba and Segera.
+
+How it works: The team will try to find and identify every rhino on the conservancy, calves included, assess how healthy each animal looks and photograph it with the date recorded. Those records will then be compared with the official KWS register so that births, deaths and movements can be accounted for. KWS says the audit will also look at how the conservancy monitors its rhinos and how quickly it reports to the wildlife service.
+
+The deaths: In a statement earlier this month, Ol Pejeta said it lost 17 black rhinos from February 26 to November 12 this year. By its count, five were confirmed or suspected lion kills, four were put down to old age, two to downer syndrome, two to disease and one to drowning. The cause of the other three has not been established. The conservancy says joint veterinary checks with KWS found no sign of poaching, and that the horns recovered are in KWS custody.
+
+Crowded habitat: Ol Pejeta says its black rhino population, put at about 179 animals, is now above the roughly 120 its land can support over the long term. It also pointed to dry weather: rainfall between April and October was about 56 per cent of the average for the same months over the previous five years. The conservancy has called for more room for rhinos, and WRTI is separately working out a new estimate of how many the land can hold.
+
+KWS has not said when the audit's findings will be released.`,
+    sources: [
+      { name: "The Eastleigh Voice — KWS begins headcount of Ol Pejeta rhinos", url: "https://eastleighvoice.co.ke/national/427645/kws-begins-headcount-of-ol-pejeta-rhinos-after-17-deaths" },
+      { name: "Kenyans.co.ke — KWS launches rhino audit at Ol Pejeta", url: "https://www.kenyans.co.ke/news/129653-kws-launches-rhino-audit-ol-pejeta-following-mysterious-deaths" },
+      { name: "Ol Pejeta Conservancy — statement on rhino conservation challenges", url: "https://www.olpejetaconservancy.org/2026/11/14/ol-pejeta-faces-rhino-conservation-challenges-as-population-growth-adds-pressure-on-habitat/" }
+    ]
+  },
+  {
+    title: "Ruto Adds Ksh5 Billion to Hustler Fund and Lifts Loans to Ksh150,000",
+    category: "Kenya",
+    date: "2026-11-25",
+    image: "https://images.unsplash.com/photo-1637997840862-9aafaf835eed?auto=format&fit=crop&w=1600&q=75",
+    caption: "Illustrative image: women at work at a tailoring school in Nairobi. Photo: Kevin Menya / Unsplash.",
+    summary: "President Ruto says the government will add a further Ksh5 billion to the Hustler Fund and move about 4.5 million regular borrowers to a loan product offering up to Ksh150,000 each.",
+    body: `President William Ruto has announced an extra Ksh5 billion for the Hustler Fund, the government's mobile lending scheme for small traders and individuals.
+
+The announcement: Speaking on Tuesday, November 24, at an event in Nairobi marking 17 years of the Joyful Women Organisation, the President said the new money was meant to deal with a shortage of money for people borrowing through the platform.
+
+Bigger loans: He said about 4.5 million regular borrowers will be moved to the fund's bridge loan facility, under which individuals can borrow up to Ksh150,000. The amount each person can actually get will still depend on their eligibility and borrowing record.
+
+Group lending: The President also asked the Principal Secretary in charge of the fund to create a Ksh300 million product for groups, which would let groups receive money and decide for themselves how to lend it to their members.
+
+Background: The Hustler Fund was launched in late 2022 to give people small, low-interest loans through their mobile phones. The bridge facility existed before this announcement; what is new is the extra capital and the plan to move millions more borrowers onto it.
+
+The President did not give a date for when the changes will take effect. Borrowers are advised to watch for official updates from the Hustler Fund.`,
+    sources: [
+      { name: "KBC — Hustler Fund gets Ksh5B boost as Ruto raises borrowing limits", url: "https://www.kbc.co.ke/hustler-fund-gets-ksh5b-boost-as-ruto-raises-borrowing-limits/" },
+      { name: "People Daily — Ruto injects Ksh5 billion into Hustler Fund", url: "https://peopledaily.digital/news/ruto-injects-ksh5-billion-into-hustler-fund-raises-loan-limits" },
+      { name: "Kenyans.co.ke — Ruto increases Hustler Fund capital", url: "https://www.kenyans.co.ke/news/129636-ruto-increases-hustler-fund-capital-ksh5-billion-raises-borrowing-limits" }
+    ]
+  },
+  {
+    title: "US Jury Finds Huawei Guilty of Trade Secrets Conspiracy and Bank Fraud",
+    category: "International",
+    date: "2026-11-25",
+    image: "https://images.unsplash.com/photo-1779517670485-2976bc8e81b2?auto=format&fit=crop&w=1600&q=75",
+    caption: "Illustrative image: a Huawei sign on an office building. Photo: Vong Vathanak / Unsplash.",
+    summary: "A federal jury in Brooklyn has convicted the Chinese telecoms giant on 10 of 12 counts but cleared it of racketeering, the most serious charge. Huawei says it will appeal.",
+    body: `A jury in New York has convicted Huawei Technologies of conspiring to steal trade secrets and of bank fraud, in a case that US prosecutors first brought in 2018.
+
+The verdict: The federal jury in Brooklyn returned its decision on Tuesday, November 24. Huawei was found guilty on 10 of the 12 counts it faced, including bank fraud, conspiracy to steal trade secrets and conspiracy to defraud the United States. Jurors acquitted the company of racketeering conspiracy, the most serious charge, and of conspiracy to obstruct justice.
+
+The case: Prosecutors argued that Huawei took technology from rivals and partners over many years while building itself into a leading global supplier of telecoms network equipment. They also accused it of doing business in sanctioned countries such as Iran and North Korea and of misleading banks and US officials to hide those dealings. Evidence at trial included alleged attempts to obtain router source code from Cisco and antenna technology from the wireless firm Quintel.
+
+Huawei's response: The company's lawyer, Brian Heberlig, said Huawei would appeal. He described the acquittal on racketeering as a vindication, arguing that it was the only charge tying all the allegations together. During the trial, the defence said prosecutors had built a story of a grand conspiracy out of isolated mistakes by a handful of staff at a company with over 200,000 workers.
+
+Background: The case became public in December 2018, when Huawei's chief financial officer, Meng Wanzhou, was arrested in Canada at the request of the United States. She later reached a deal with US prosecutors and returned to China, and her case was later dismissed. Further charges against the company, including the trade secrets counts, were added in 2020.
+
+No sentence has been announced. Huawei is already barred from selling network equipment to US carriers, and several Western countries, including the United Kingdom and Canada, have restricted its equipment.`,
+    sources: [
+      { name: "Al Jazeera (AP and Reuters) — Huawei found guilty of trade secrets conspiracy", url: "https://www.aljazeera.com/economy/2026/11/24/chinese-tech-giant-huawei-found-guilty-of-conspiracy-to-steal-trade-secrets" },
+      { name: "France 24 — New York jury convicts Huawei of stealing trade secrets", url: "https://www.france24.com/en/americas/20261124-new-york-jury-convicts-huawei-of-stealing-trade-secrets" }
+    ]
+  },
+  {
+    title: "China Flies Its First Foreign Astronaut as Pakistan's Zeeshan Ali Heads to Tiangong",
+    category: "International",
+    date: "2026-11-25",
+    image: "https://images.unsplash.com/photo-1541185934-01b600ea069c?auto=format&fit=crop&w=1600&q=75",
+    caption: "Illustrative image: a rocket launch trail at night, not the Shenzhou-24 launch. Photo: SpaceX / Unsplash.",
+    summary: "The Shenzhou-24 spacecraft has lifted off from northwest China carrying two Chinese astronauts and Muhammad Zeeshan Ali, the first non-Chinese astronaut to visit China's space station.",
+    body: `China has sent a Pakistani astronaut into orbit, making him the first person from outside China to travel to its Tiangong space station.
+
+The launch: The Shenzhou-24 spacecraft rose from the Jiuquan launch centre in the country's north-west early on Wednesday, November 25. Reuters reported the launch time as 8:18am local time. Chinese state media said the spacecraft detached from its launcher and entered its intended orbit.
+
+The crew: On board are Muhammad Zeeshan Ali, 40, a Pakistani pilot; the mission commander, Tang Hongbo (51), and Wu Yi (39). For Ali and Wu, it is a first trip to space. Tang is a veteran of two earlier flights and, according to state broadcaster CCTV, will become the first astronaut to visit Tiangong three times.
+
+Ali's role: Ali is flying as a payload specialist on a short stay expected to last between five and ten days. Among his tasks is an experiment with cyanobacteria, microbes that use sunlight to make energy. He is due to return to Earth on board Shenzhou-23. Chinese media say the three will conduct over 90 experiments and technology tests.
+
+Reaction in Pakistan: Pakistanis followed the launch on television, and Prime Minister Shehbaz Sharif said the mission made the whole nation proud. Ali's seat was secured under a deal Beijing and Islamabad signed in February 2025.
+
+Bigger picture: China's goal is a crewed Moon landing by 2030, while the United States plans its own crewed lunar landing in 2028.`,
+    sources: [
+      { name: "Euronews — China sends first foreign astronaut to its space station", url: "https://www.euronews.com/2026/11/25/china-sends-first-foreign-astronaut-to-its-space-station-as-pakistani-joins-shenzhou-24-cr" },
+      { name: "US News (Reuters) — Shenzhou-24 takes off with Pakistani national", url: "https://www.usnews.com/news/world/articles/2026-11-24/chinas-shenzhou-24-space-flight-takes-off-with-pakistani-national-as-first-foreign-astronaut" },
+      { name: "KSAT (AP) — China launches Shenzhou 24 with a Pakistani astronaut", url: "https://www.ksat.com/tech/2026/11/25/china-launches-shenzhou-24-spacecraft-carrying-2-chinese-and-a-pakistani-astronaut/" }
+    ]
+  },
+  {
+    title: "EU Proposes 22nd Russia Sanctions Package Targeting Banks, Crypto and Sport",
+    category: "International",
+    date: "2026-11-25",
+    image: "https://images.unsplash.com/photo-1594810205183-18a8b0ce6c13?auto=format&fit=crop&w=1600&q=75",
+    caption: "EU flags outside the European Commission's Berlaymont building in Brussels. Photo: Guillaume Périgois / Unsplash.",
+    summary: "The European Commission wants to cut 60 more Russian banks off SWIFT, go after crypto platforms used to dodge restrictions, and bar Russian teams from competing under their flag in Europe.",
+    body: `The European Commission has put forward a new set of sanctions against Russia, aimed at its banks, its use of cryptocurrency and, for the first time, its place in European sport.
+
+The proposal: Unveiled on Monday, November 23, the package would be the EU's 22nd round of sanctions since Russia's full-scale invasion of Ukraine in February 2022. It is only a proposal for now: all 27 member states must agree before it takes effect, and the measures may change during negotiations. Brussels is aiming for a deal in December.
+
+Banks and crypto: The plan would remove about 60 more Russian banks from SWIFT, the network banks use to send payment instructions to each other. It also targets cryptocurrency platforms and payment networks, both inside Russia and in other countries, that are said to help Moscow get around existing restrictions.
+
+Shadow fleet and refineries: More than 70 extra ships from Russia's so-called shadow fleet, which the EU says is used to carry oil outside the price cap, would be added to the list. European companies would also be barred from repairing Russian energy facilities, especially oil refineries damaged by Ukrainian long-range strikes.
+
+Soldiers and athletes: The Commission has brought back a proposed entry ban on Russians who have fought in Ukraine, an idea that stalled earlier this year. It also wants sports events held in the EU to stop Russian sides and sportspeople from appearing under their national flag.
+
+What was said: Commission President Ursula von der Leyen said the EU would keep proposing new sanctions until Russia shows a genuine wish for lasting peace in Ukraine.`,
+    sources: [
+      { name: "Euronews — EU goes after Russia's banks, soldiers and athletes", url: "https://www.euronews.com/2026/11/23/eu-goes-after-russias-banks-soldiers-and-athletes-in-new-sanctions-package" },
+      { name: "Al Jazeera — EU plans sports ban in new Russia sanctions proposal", url: "https://www.aljazeera.com/news/2026/11/23/eu-plans-sports-ban-in-sweeping-new-russia-sanctions-proposal" }
+    ]
+  },
+  {
     title: "Iran Threatens to Confront US Naval Blockade as Tensions Escalate in the Middle East",
     category: "International",
     date: "2026-11-23",
@@ -42,8 +185,7 @@ With both Washington and Tehran maintaining opposing positions, the internationa
 
 The coming days could prove critical as governments and shipping companies monitor whether diplomatic engagement can prevent further escalation.`,
     source: "Reuters",
-    sourceUrl: "https://www.reuters.com/world/middle-east/iran-says-it-will-use-all-available-tools-confront-us-naval-blockade-2026-11-23/",
-    featured: true
+    sourceUrl: "https://www.reuters.com/world/middle-east/iran-says-it-will-use-all-available-tools-confront-us-naval-blockade-2026-11-23/"
   },
 
   {
