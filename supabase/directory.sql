@@ -1005,7 +1005,8 @@ create policy "Public packages" on public.business_packages for select using (ac
 
 -- Businesses: owners see and edit their own; anyone signed in can start one
 drop policy if exists "Owners read" on public.businesses;
-create policy "Owners read" on public.businesses for select using (public.biz_is_owner(id));
+-- created_by: lets the creator read the row back while it is being inserted (ownership is added just after)
+create policy "Owners read" on public.businesses for select using (public.biz_is_owner(id) or created_by = auth.uid());
 drop policy if exists "Signed-in create" on public.businesses;
 create policy "Signed-in create" on public.businesses for insert to authenticated with check (auth.uid() is not null);
 drop policy if exists "Owners update" on public.businesses;
