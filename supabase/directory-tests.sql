@@ -144,9 +144,14 @@ begin
   perform pg_temp.ok('standard: photos shown', (select count(*) from public.dir_images where business_id = b) = 2);
   perform pg_temp.ok('standard: not labelled sponsored', not r.sponsored);
   perform pg_temp.ok('paid package does not verify', not r.verified);
-  perform pg_temp.ok('invoice marked paid with receipt', (select status = 'paid' and receipt_number like 'RC-%' from public.business_invoices where subscription_id = current_setting('test.sid')::uuid));
 end $$;
 -- Expiry: listing falls back to Free without deleting anything
+select pg_temp.act('00000000-0000-4000-8000-0000000000a4');
+select pg_temp.ok('invoice marked paid with receipt', (select status = 'paid' and receipt_number like 'RC-%' from public.business_invoices where subscription_id = current_setting('test.sid')::uuid));
+select pg_temp.act('00000000-0000-4000-8000-0000000000a1');
+select pg_temp.ok('owner can read own invoice', exists (select 1 from public.business_invoices where subscription_id = current_setting('test.sid')::uuid));
+select pg_temp.act('00000000-0000-4000-8000-0000000000a2');
+select pg_temp.ok('other user cannot read invoice', not exists (select 1 from public.business_invoices where subscription_id = current_setting('test.sid')::uuid));
 select pg_temp.act('00000000-0000-4000-8000-0000000000a4');
 update public.business_subscriptions set starts_on = current_date - 60, ends_on = current_date - 1 where id = current_setting('test.sid')::uuid;
 select pg_temp.act(null);
