@@ -73,9 +73,15 @@ Politics & Governance and Sports also use *Only when the category has stories*, 
    * Accessibility statement
    * the new newsletter paragraphs in the Privacy Policy
 
-## Cookie settings
+## Cookie settings and Google Tag Manager
 
-The site sets no advertising or tracking cookies. The only optional technology is **advert measurement**: a random per-tab code used to count advert views and clicks fairly. Readers can switch it off under **Cookie Settings**. Once it is off, `ads.js` records nothing for that reader.
+* **Google Tag Manager (`GTM-KZZ2PRJM`)** is placed right after `<head>` on every public page by `tools/build_footer.js`. The container is downloaded **only after the visitor clicks Accept** on the first-visit cookie bar, or switches **Analytics** on in Cookie Settings.
+  * Google Consent Mode starts with everything denied. Accepting grants `analytics_storage` only; advertising storage stays denied.
+  * Switching Analytics off removes the Google Analytics cookies.
+  * The sign-in, account, advertiser dashboard, unsubscribe, admin and invoice pages do not get the tag, because their addresses can contain private details.
+  * Use the container for analytics (for example Google Analytics 4). Before adding advertising or remarketing tags, the Privacy Policy and the cookie choice would need an "advertising" option first.
+  * To change the container ID, edit `GTM_ID` in `tools/build_footer.js` and run it.
+* **Advert measurement** is a random per-tab code used to count advert views and clicks fairly. It is on by default, and readers can switch it off in Cookie Settings. Once it is off, `ads.js` records nothing for that reader.
 
 ## Safety built in
 

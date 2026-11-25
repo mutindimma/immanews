@@ -446,10 +446,30 @@ ${renderNewsletter(s)}
   }
   root.IMMA_NEWSLETTER = { rpc, MESSAGES, EMAIL };
 
-  // Cookie settings — the site uses no advertising or tracking cookies; the one optional
-  // technology is advert measurement (a random per-tab code used to count advert views/clicks).
+  // Cookie settings. Essential storage is always on. Optional:
+  //   * analytics  — Google Tag Manager (GTM-KZZ2PRJM) loads only after the visitor accepts
+  //                  (the loader, window.immaLoadGTM, is in each page's <head>);
+  //   * adMeasure  — a random per-tab code used to count advert views/clicks (on unless switched off).
   const prefs = () => Object.assign({ adMeasure: true }, store.get(PREFS) || {});
   root.IMMA_PREFS = { get: prefs };
+  function savePrefs(p) {
+    const before = prefs();
+    const next = Object.assign({}, before, p, { savedAt: new Date().toISOString() });
+    store.set(PREFS, next);
+    if (next.adMeasure === false) { try { sessionStorage.removeItem("imma_ad_sid"); } catch (e) {} }
+    if (next.analytics === true && typeof root.immaLoadGTM === "function") root.immaLoadGTM();
+    if (next.analytics === false && before.analytics === true) {
+      if (typeof root.gtag === "function") root.gtag("consent", "update", { analytics_storage: "denied" });
+      // Remove Google Analytics cookies already set on this site
+      document.cookie.split(";").map((c) => c.split("=")[0].trim()).filter((n) => /^(_ga|_gid|_gat)/.test(n)).forEach((n) => {
+        for (const dom of ["", "; domain=" + location.hostname, "; domain=." + location.hostname.replace(/^www\./, "")]) {
+          document.cookie = n + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + dom;
+        }
+      });
+    }
+    const b = document.getElementById("sf-consent");
+    if (b) b.remove();
+  }
   function openCookies() {
     let d = document.getElementById("sf-cookies");
     if (!d) {
@@ -457,9 +477,11 @@ ${renderNewsletter(s)}
       d.id = "sf-cookies"; d.className = "sf-dialog"; d.setAttribute("aria-labelledby", "sf-cookies-h");
       d.innerHTML = `<form method="dialog" class="sf-dialog-body">
   <h2 id="sf-cookies-h">Cookie settings</h2>
-  <p>IMMA News does not use advertising or tracking cookies, and we do not sell your data. Here is what your browser stores for this site:</p>
+  <p>We use analytics cookies only if you allow them. We do not use advertising cookies, and we do not sell your data.</p>
   <div class="sf-pref"><div><b>Essential</b><p>Your sign-in (only if you sign in), these preferences, and a short-lived copy of the footer and adverts so pages load faster.</p></div><span class="sf-pref-on">Always on</span></div>
-  <div class="sf-pref"><div><b>Advert measurement</b><p>A random code, kept only until you close the tab, lets us count advert views and clicks fairly for advertisers. It does not identify you.</p></div>
+  <div class="sf-pref"><div><b>Analytics</b><p>Google Tag Manager and Google Analytics cookies help us understand which pages readers visit, so we can improve IMMA News. Google receives your IP address and page visits.</p></div>
+    <label class="sf-switch"><input type="checkbox" name="analytics"><span class="sf-sr">Allow analytics cookies</span><i aria-hidden="true"></i></label></div>
+  <div class="sf-pref"><div><b>Advert measurement</b><p>A random code, kept only until you close the tab, lets us count advert views and clicks fairly for advertisers. It is not a cookie and does not identify you.</p></div>
     <label class="sf-switch"><input type="checkbox" name="adMeasure"><span class="sf-sr">Allow advert measurement</span><i aria-hidden="true"></i></label></div>
   <p class="sf-small">Read more in our <a href="/privacy.html#storage">Privacy Policy</a>.</p>
   <div class="sf-dialog-btns"><button class="sf-btn sf-btn-ghost-dark" value="cancel" type="submit">Cancel</button><button class="sf-btn sf-btn-gold" value="save" type="submit">Save preferences</button></div>
@@ -467,18 +489,33 @@ ${renderNewsletter(s)}
       document.body.appendChild(d);
       d.addEventListener("close", () => {
         if (d.returnValue === "save") {
-          const adMeasure = d.querySelector('[name="adMeasure"]').checked;
-          store.set(PREFS, { adMeasure, savedAt: new Date().toISOString() });
-          if (!adMeasure) { try { sessionStorage.removeItem("imma_ad_sid"); } catch (e) {} }
+          savePrefs({ adMeasure: d.querySelector('[name="adMeasure"]').checked, analytics: d.querySelector('[name="analytics"]').checked });
         }
         const opener = document.querySelector("[data-cookie-settings]");
         if (opener) opener.focus();
       });
     }
     d.querySelector('[name="adMeasure"]').checked = prefs().adMeasure !== false;
+    d.querySelector('[name="analytics"]').checked = prefs().analytics === true;
     d.returnValue = "";
     if (typeof d.showModal === "function") d.showModal(); else d.setAttribute("open", "");
   }
+
+  // First visit: ask once about analytics cookies (nothing optional loads until the reader chooses)
+  function consentBanner() {
+    if (typeof prefs().analytics === "boolean" || document.getElementById("sf-consent")) return;
+    const b = document.createElement("section");
+    b.id = "sf-consent"; b.className = "sf-consent-bar"; b.setAttribute("aria-label", "Cookie choice");
+    b.innerHTML = `<div class="wrap sf-consent-inner">
+  <p>We'd like to use analytics cookies (Google Analytics) to learn which stories readers find useful. They are off unless you accept. <a href="/privacy.html#storage">Privacy Policy</a></p>
+  <div class="sf-consent-btns"><button type="button" class="sf-btn sf-btn-ghost-dark" data-consent="no">Decline</button><button type="button" class="sf-btn sf-btn-ghost-dark" data-cookie-settings>Settings</button><button type="button" class="sf-btn sf-btn-gold" data-consent="yes">Accept</button></div>
+</div>`;
+    document.body.appendChild(b);
+  }
+  document.addEventListener("click", (e) => {
+    const c = e.target.closest("[data-consent]");
+    if (c) savePrefs({ analytics: c.dataset.consent === "yes" });
+  });
 
   // One set of listeners for everything (survives re-rendering)
   document.addEventListener("click", (e) => {
@@ -517,6 +554,7 @@ ${renderNewsletter(s)}
     current = null;
     mount(null);
     loadSettings();
+    consentBanner();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })(typeof window !== "undefined" ? window : globalThis);
