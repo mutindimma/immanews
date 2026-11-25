@@ -1,0 +1,31 @@
+{
+  "_help": [
+    "Bylines and author boxes for story pages (used by tools/build_articles.js).",
+    "Add a person by copying the _template entry under a new id (lowercase, e.g. 'jane-doe'),",
+    "then set author: 'jane-doe' on their stories in news.js and run node tools/build_articles.js.",
+    "Only list real, checkable facts: qualifications you actually hold, posts you actually held,",
+    "and profile links that are yours. Empty fields are simply not shown.",
+    "A person with 'published': false is kept out of the site until you are ready."
+  ],
+  "_template": {
+    "type": "Person",
+    "published": false,
+    "name": "",
+    "jobTitle": "",
+    "photo": "",
+    "bio": "",
+    "credentials": [],
+    "knowsAbout": [],
+    "email": "",
+    "sameAs": []
+  },
+  "desk": {
+    "type": "Organization",
+    "published": true,
+    "name": "IMMA News Editorial Desk",
+    "jobTitle": "Newsroom, Nairobi",
+    "bio": "Stories by the IMMA News Editorial Desk are researched and written by our Nairobi newsroom. Every report is checked against at least one credible, named source before publication, sources are listed at the end of the story, and errors are corrected openly.",
+    "knowsAbout": ["Kenyan current affairs", "Public health", "Kenyan food and nutrition", "Public services in Kenya"],
+    "sameAs": []
+  }
+}

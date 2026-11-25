@@ -2,7 +2,11 @@ const $ = (s) => document.querySelector(s);
 const fmt = (d) => new Date(d + "T00:00:00").toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const idx = (s) => NEWS.indexOf(s);
-const pic = (s) => esc(s.image || "images/placeholder.svg");
+const U = window.IMMA_URL;
+const href = (s) => esc(U.storyPath(s));
+// Pictures sized for where they are shown (Unsplash/Pexels resize on their side)
+const pic = (s, w = 480, h = 300) => esc(s.image ? U.imageUrl(s.image, w, h) : "images/placeholder.svg");
+const set = (s, sizes) => s.image && U.resizable(s.image) ? ` srcset="${sizes.map(([w, h]) => esc(U.imageUrl(s.image, w, h)) + " " + w + "w").join(", ")}"` : "";
 
 document.querySelectorAll("#year, [data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
 
@@ -14,23 +18,23 @@ const sideHeads = stories.filter((s) => s !== featured).slice(0, 3);
 $("#top-stories").classList.toggle("solo", sideHeads.length === 0);
 $("#top-stories").innerHTML = `
   <article class="hero" data-i="${idx(featured)}">
-    <img src="${pic(featured)}" alt="">
+    <img src="${pic(featured, 1200, 675)}"${set(featured, [[800, 450], [1200, 675], [1600, 900]])} sizes="(max-width: 900px) 100vw, 720px" alt="" width="1200" height="675" fetchpriority="high" decoding="async">
     <div class="hero-text">
       <span class="label">${esc(featured.category)}</span>
-      <h1>${esc(featured.title)}</h1>
+      <h1><a href="${href(featured)}">${esc(featured.title)}</a></h1>
       <p>${esc(featured.summary)}</p>
     </div>
   </article>
   <div class="side-heads">
     ${sideHeads.map((s) => `
       <article class="side-head" data-i="${idx(s)}">
-        <img src="${pic(s)}" alt="" loading="lazy">
-        <div><span class="label">${esc(s.category)}</span><h3>${esc(s.title)}</h3></div>
+        <img src="${pic(s, 220, 160)}"${set(s, [[220, 160], [440, 320]])} sizes="110px" alt="" width="110" height="80" loading="lazy" decoding="async">
+        <div><span class="label">${esc(s.category)}</span><h3><a href="${href(s)}">${esc(s.title)}</a></h3></div>
       </article>`).join("")}
   </div>`;
 
 // Trending (titles of latest stories)
-$("#trending").innerHTML = stories.slice(0, 8).map((s) => `<li data-i="${idx(s)}">${esc(s.title)}</li>`).join("");
+$("#trending").innerHTML = stories.slice(0, 8).map((s) => `<li data-i="${idx(s)}"><a href="${href(s)}">${esc(s.title)}</a></li>`).join("");
 
 // Category bar
 let active = "Home";
@@ -63,11 +67,11 @@ function render() {
     (!q || (s.title + " " + s.summary + " " + s.category).toLowerCase().includes(q)));
   $("#stream-label").textContent = q ? `· results for “${$("#search").value.trim()}”` : active !== "Home" ? `· ${active}` : "";
   $("#news-grid").innerHTML = list.map((s) => `
-    <article class="item" data-i="${idx(s)}" tabindex="0">
-      <img src="${pic(s)}" alt="" loading="lazy">
+    <article class="item" data-i="${idx(s)}">
+      <img src="${pic(s)}"${set(s, [[240, 150], [480, 300]])} sizes="(max-width: 700px) 110px, 220px" alt="" width="220" height="138" loading="lazy" decoding="async">
       <div>
         <span class="label">${esc(s.category)}</span>
-        <h3>${esc(s.title)}</h3>
+        <h3><a href="${href(s)}">${esc(s.title)}</a></h3>
         <p>${esc(s.summary)}</p>
         <span class="source">IMMA News · ${fmt(s.date)}</span>
       </div>
@@ -80,64 +84,22 @@ render();
 // Mobile menu toggle jumps to categories
 $(".menu-toggle").addEventListener("click", () => $("#catbar").scrollIntoView({ behavior: "smooth" }));
 
-// Article reader
-const reader = $("#reader");
-const link = (name, url) => url ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(name)}</a>` : esc(name);
-
-// Paragraphs; a short "Heading: text" opener is shown in bold.
-// Extra photos are spaced evenly through the article.
-function paragraphs(body, extras = []) {
-  const parts = body.split(/\n\s*\n/).map((p) => {
-    const m = p.match(/^([A-Z][^:.\n]{2,70}):\s+([\s\S]+)$/);
-    return m ? `<p><strong>${esc(m[1])}:</strong> ${esc(m[2])}</p>` : `<p>${esc(p)}</p>`;
-  });
-  extras.forEach((x, j) => {
-    const at = Math.round(((j + 1) * parts.length) / (extras.length + 1));
-    parts[at - 1] += `
-      <figure class="extra">
-        <img src="${esc(x.image)}" alt="" loading="lazy">
-        ${x.caption ? `<figcaption>${esc(x.caption)}</figcaption>` : ""}
-      </figure>`;
-  });
-  return parts.join("");
-}
-
-// News stories: "Based on reporting by X". Guides: "Sources: A, B".
-function credit(s) {
-  if (s.sources && s.sources.length)
-    return `<p class="credit">Sources: ${s.sources.map((x) => link(x.name, x.url)).join(", ")}. Written for IMMA News.</p>`;
-  if (s.source)
-    return `<p class="credit">Based on reporting by ${link(s.source, s.sourceUrl)}. Written for IMMA News.</p>`;
-  return "";
-}
-
-function openStory(i) {
-  const s = NEWS[i];
-  if (s.url) { location.href = s.url; return; }
-  $("#reader-body").innerHTML = `
-    <img src="${pic(s)}" alt="">
-    ${s.caption ? `<p class="caption">${esc(s.caption)}</p>` : ""}
-    <div class="reader-text">
-      <span class="label">${esc(s.category)}</span>
-      <h2>${esc(s.title)}</h2>
-      <p class="source">IMMA News · ${fmt(s.date)}</p>
-      <p class="lead">${esc(s.summary)}</p>
-      ${s.format === "markdown" && window.marked ? marked.parse(s.body) : paragraphs(s.body, s.extraImages)}
-      ${credit(s)}
-    </div>`;
-  reader.querySelectorAll(".reader-text a").forEach((a) => { a.target = "_blank"; a.rel = "noopener"; });
-  if (window.IMMA_AUTH) window.IMMA_AUTH.decorateReader(s, reader.querySelector(".reader-text"));
-  reader.showModal();
-}
+// Every story has its own page (built by tools/build_articles.js); cards open it.
+function openStory(i) { location.href = U.storyPath(NEWS[i]); }
 document.addEventListener("click", (e) => {
+  if (e.target.closest("a")) return;   // real links work on their own (and with ctrl/middle click)
   const el = e.target.closest("[data-i]");
   if (el) openStory(el.dataset.i);
 });
 document.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && e.target.matches(".item")) openStory(e.target.dataset.i);
 });
-reader.querySelector(".close").addEventListener("click", () => reader.close());
-reader.addEventListener("click", (e) => { if (e.target === reader) reader.close(); });
+// The pop-up reader is still used for sponsored content (ads.js)
+const reader = $("#reader");
+if (reader) {
+  reader.querySelector(".close").addEventListener("click", () => reader.close());
+  reader.addEventListener("click", (e) => { if (e.target === reader) reader.close(); });
+}
 
 // Links from other pages: index.html?c=Sports (category) or index.html?q=passport (search)
 (() => {
@@ -145,7 +107,7 @@ reader.addEventListener("click", (e) => { if (e.target === reader) reader.close(
   const c = params.get("c"), q = params.get("q"), story = params.get("story");
   if (story && window.IMMA_AUTH) {
     const i = NEWS.findIndex((s) => window.IMMA_AUTH.storyKey(s) === story);
-    if (i >= 0) openStory(i);
+    if (i >= 0) { location.replace(U.storyPath(NEWS[i])); return; }   // old ?story= links
   }
   if (q) {
     $("#search").value = q;

@@ -25,12 +25,12 @@
       if (user) {
         const m = user.user_metadata || {};
         const first = displayName(user).split(" ")[0];
-        a.href = "account.html";
+        a.href = "/account.html";
         a.classList.add("is-signed-in");
         a.innerHTML = (m.avatar_url ? `<img src="${esc(m.avatar_url)}" alt="" referrerpolicy="no-referrer">` : "") + `<span>${esc(first)}</span>`;
         a.setAttribute("aria-label", "My account");
       } else {
-        a.href = "signin.html";
+        a.href = "/signin.html";
         a.classList.remove("is-signed-in");
         a.textContent = "Sign in";
         a.removeAttribute("aria-label");
@@ -65,7 +65,7 @@
   }
 
   async function toggleSave(story) {
-    if (!user) { location.href = "signin.html?next=" + encodeURIComponent(location.pathname.split("/").pop() || "index.html"); return null; }
+    if (!user) { location.href = "/signin.html?next=" + encodeURIComponent(location.pathname); return null; }
     const key = storyKey(story);
     if (saved.has(key)) {
       const { error } = await client.from("saved_stories").delete().eq("user_id", user.id).eq("story_key", key);

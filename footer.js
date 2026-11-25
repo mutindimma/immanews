@@ -47,7 +47,7 @@
     // show: "always" | "auto" (only when that news category has stories) | "hidden"
     columns: [
       { title: "Explore IMMA", links: [
-        { label: "Latest News", href: "/index.html#news", show: "always" },
+        { label: "Latest News", href: "/news/", show: "always" },
         { label: "Politics & Governance", href: "/index.html?c=Politics", show: "auto" },
         { label: "Business & Economy", href: "/index.html?c=Business", show: "auto" },
         { label: "Sports", href: "/index.html?c=Sports", show: "auto" },
@@ -79,7 +79,9 @@
       { title: "About & Support", links: [
         { label: "About IMMA News", href: "/about.html", show: "always" },
         { label: "About IMMA Media", href: "/about.html#imma-media", show: "always" },
-        { label: "Editorial Standards", href: "/about.html#editorial", show: "always" },
+        { label: "Editorial Policy", href: "/editorial-policy.html", show: "always" },
+        { label: "Fact-Checking Policy", href: "/fact-checking.html", show: "always" },
+        { label: "Masthead", href: "/masthead.html", show: "always" },
         { label: "Corrections & Complaints", href: "/corrections.html", show: "always" },
         { label: "Contact Us", href: "/contact.html", show: "always" },
         { label: "Frequently Asked Questions", href: "/faq.html", show: "always" },
@@ -90,7 +92,7 @@
     legal: [
       { label: "Privacy Policy", href: "/privacy.html", show: "always" },
       { label: "Terms of Use", href: "/terms.html", show: "always" },
-      { label: "Editorial Standards", href: "/about.html#editorial", show: "always" },
+      { label: "Editorial Policy", href: "/editorial-policy.html", show: "always" },
       { label: "Sitemap", href: "/sitemap.html", show: "always" },
       { label: "RSS Feed", href: "/feed.xml", show: "always" },
       { label: "Accessibility", href: "/accessibility.html", show: "always" }

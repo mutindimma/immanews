@@ -241,3 +241,8 @@ dialog::backdrop { background: rgba(0,10,28,.7); }
 .info-list a { color: inherit; display: flex; gap: 12px; align-items: flex-start; }
 .info-list a:hover b { color: var(--brand); text-decoration: underline; }
 .info-more { display: inline-block; margin-top: 10px; font-weight: 800; color: var(--brand); font-size: .92rem; }
+
+/* Story headlines are real links to each story's page (crawlable); keep the card look */
+.hero h1 a, .side-head h3 a, .item h3 a, .trending a { color: inherit; text-decoration: none; }
+.hero h1 a:hover, .side-head h3 a:hover, .item h3 a:hover, .trending a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.hero h1 a:focus-visible, .item h3 a:focus-visible, .side-head h3 a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }

@@ -13,11 +13,24 @@
 //    summary    one or two sentences for the story list
 //    body       full story — leave a blank line between paragraphs
 //    source / sourceUrl   optional credit for the original reporting
+//
+//  Search & Google News (used by tools/build_articles.js):
+//    slug         short web address, e.g. "nairobi-building-collapses-nine-killed"
+//                 (the page is /news/<section>/<slug>/). Never change it once published.
+//    seoTitle     title shown in Google, 60 characters or fewer
+//    description  snippet shown in Google, 155 characters or fewer
+//    author       id from tools/authors.json (default: the IMMA News Editorial Desk)
+//    updated      YYYY-MM-DD when a published story is meaningfully updated
+//    published    optional exact time, e.g. "2026-11-25T09:30:00+03:00"
+//  After adding or editing stories run:  node tools/build_articles.js
 // ============================================================
 const NEWS = [
   {
     title: "eCitizen Users Told to Change Passwords as Government Probes Hacking Claim",
     category: "Kenya",
+    slug: "ecitizen-hacking-claim-change-passwords",
+    seoTitle: "eCitizen Hacking Claim: Users Told to Change Passwords",
+    description: "Kenya's government is probing claims that hackers took eCitizen data. No breach is confirmed, but users are urged to set strong, unique passwords.",
     date: "2026-11-25",
     featured: true,
     image: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?auto=format&fit=crop&w=1600&q=75",
@@ -43,6 +56,9 @@ IMMA News will update this story when investigators release their findings.`,
   {
     title: "KWS Begins Rhino-by-Rhino Count at Ol Pejeta After 17 Deaths",
     category: "Kenya",
+    slug: "kws-ol-pejeta-rhino-count-17-deaths",
+    seoTitle: "KWS Starts Ol Pejeta Rhino Count After 17 Deaths",
+    description: "Wildlife officials are auditing the black rhinos at Ol Pejeta Conservancy in Laikipia after 17 died this year. The conservancy says none was poached.",
     date: "2026-11-25",
     image: "https://images.unsplash.com/photo-1790866268427-52d90d386804?auto=format&fit=crop&w=1600&q=75",
     caption: "Illustrative image: a black rhino in the Maasai Mara, not at Ol Pejeta. Photo: Dmitrii Zhodzishskii / Unsplash.",
@@ -67,6 +83,9 @@ KWS has not said when the audit's findings will be released.`,
   {
     title: "Ruto Adds Ksh5 Billion to Hustler Fund and Lifts Loans to Ksh150,000",
     category: "Kenya",
+    slug: "hustler-fund-ksh5-billion-loan-limit-ksh150000",
+    seoTitle: "Hustler Fund Gets Ksh5bn, Loan Limit Rises to Ksh150,000",
+    description: "President Ruto is adding Ksh5 billion to the Hustler Fund and moving about 4.5 million regular borrowers to loans of up to Ksh150,000.",
     date: "2026-11-25",
     image: "https://images.unsplash.com/photo-1637997840862-9aafaf835eed?auto=format&fit=crop&w=1600&q=75",
     caption: "Illustrative image: women at work at a tailoring school in Nairobi. Photo: Kevin Menya / Unsplash.",
@@ -91,6 +110,9 @@ The President did not give a date for when the changes will take effect. Borrowe
   {
     title: "US Jury Finds Huawei Guilty of Trade Secrets Conspiracy and Bank Fraud",
     category: "International",
+    slug: "huawei-guilty-trade-secrets-conspiracy",
+    seoTitle: "US Jury Finds Huawei Guilty of Trade Secrets Conspiracy",
+    description: "A Brooklyn federal jury convicted Huawei on 10 of 12 counts but cleared it of racketeering, the most serious charge. Huawei says it will appeal.",
     date: "2026-11-25",
     image: "https://images.unsplash.com/photo-1779517670485-2976bc8e81b2?auto=format&fit=crop&w=1600&q=75",
     caption: "Illustrative image: a Huawei sign on an office building. Photo: Vong Vathanak / Unsplash.",
@@ -114,6 +136,9 @@ No sentence has been announced. Huawei is already barred from selling network eq
   {
     title: "China Flies Its First Foreign Astronaut as Pakistan's Zeeshan Ali Heads to Tiangong",
     category: "International",
+    slug: "china-first-foreign-astronaut-pakistan-zeeshan-ali",
+    seoTitle: "Pakistan's Zeeshan Ali Is China's First Foreign Astronaut",
+    description: "Shenzhou-24 has lifted off with two Chinese astronauts and Pakistan's Muhammad Zeeshan Ali, the first foreigner to visit China's space station.",
     date: "2026-11-25",
     image: "https://images.unsplash.com/photo-1541185934-01b600ea069c?auto=format&fit=crop&w=1600&q=75",
     caption: "Illustrative image: a rocket launch trail at night, not the Shenzhou-24 launch. Photo: SpaceX / Unsplash.",
@@ -138,6 +163,9 @@ Bigger picture: China's goal is a crewed Moon landing by 2030, while the United 
   {
     title: "Kenya's Mirriam Cherop Wins Thrilling Cross-Country Race in Spain",
     category: "Sports",
+    slug: "mirriam-cherop-wins-atapuerca-cross-country",
+    seoTitle: "Mirriam Cherop Wins Atapuerca Cross-Country Race in Spain",
+    description: "Kenya's Mirriam Cherop sprinted past two Ethiopians to win the women's race at Spain's Cross Internacional de Atapuerca, a World Athletics Gold event.",
     date: "2026-11-23",
     image: "https://images.unsplash.com/photo-1760114852702-9c65fe257a52?auto=format&fit=crop&w=1600&q=75",
     caption: "Illustrative image: a running track at an athletics venue, not the Atapuerca race. Photo: Sincerely Media / Unsplash.",
@@ -162,6 +190,9 @@ Cherop's victory adds to Kenya's strong international cross-country performances
   {
     title: "Kabras Sugar Defeat KCB 20-15 in Kenya Cup Season Opener",
     category: "Sports",
+    slug: "kabras-sugar-beat-kcb-kenya-cup-opener",
+    seoTitle: "Kabras Sugar Beat KCB 20-15 in Kenya Cup Season Opener",
+    description: "Champions Kabras Sugar opened their 2026/27 Kenya Cup campaign with a 20-15 win over KCB Rugby in Kakamega, with Rayvone Ambale scoring twice.",
     date: "2026-11-23",
     image: "https://images.unsplash.com/photo-1791714997655-bd35fd515db9?auto=format&fit=crop&w=1600&q=75",
     caption: "Illustrative image: a rugby ball on a grass field. Photo: Xander Sauviller / Unsplash.",
@@ -186,6 +217,9 @@ The opening weekend demonstrated the competitive nature of Kenyan club rugby, wi
   {
     title: "Liverpool Thrash Manchester United 4-0 in Premier League Showdown",
     category: "Sports",
+    slug: "liverpool-beat-manchester-united-4-0",
+    seoTitle: "Liverpool Thrash Man United 4-0 in Pochettino's First Game",
+    description: "Liverpool beat ten-man Manchester United 4-0 on Sunday, November 22, in a difficult first match in charge for United manager Mauricio Pochettino.",
     date: "2026-11-23",
     image: "https://images.pexels.com/photos/12279964/pexels-photo-12279964.jpeg?auto=compress&cs=tinysrgb&w=1600",
     caption: "Illustrative image: aerial view of a football stadium, not the Liverpool–Manchester United match. Photo: Antonio Ochoa / Pexels.",
@@ -208,6 +242,9 @@ Manchester United will now face renewed scrutiny over their defensive organisati
   {
     title: "Medically Assisted Weight Loss: Safe Options and Medical Support Explained",
     category: "Health",
+    slug: "medically-assisted-weight-loss-kenya",
+    seoTitle: "Medically Assisted Weight Loss in Kenya: Safe Options",
+    description: "A guide to medically supervised weight-loss programmes, prescription treatments and procedures, their risks, and how to get care in Kenya.",
     date: "2026-11-23",
     image: "https://images.pexels.com/photos/7659869/pexels-photo-7659869.jpeg?auto=compress&cs=tinysrgb&w=1600",
     caption: "A doctor consulting with a patient. Photo: Thirdman / Pexels.",
@@ -245,6 +282,9 @@ Please note: This article is for general information only and is not medical adv
   {
     title: "7 High-Protein, High-Fibre Kenyan Meals for Healthy Weight Management",
     category: "Health",
+    slug: "high-protein-high-fibre-kenyan-meals",
+    seoTitle: "7 High-Protein, High-Fibre Kenyan Meals for Healthy Weight",
+    description: "Seven affordable Kenyan recipes rich in protein and fibre to keep you full, with ingredients, methods and estimated nutrition per serving.",
     date: "2026-11-23",
     format: "markdown",
     image: "https://images.unsplash.com/photo-1666181551815-b9adecb24e46?auto=format&fit=crop&w=1600&q=75",
@@ -550,6 +590,9 @@ Lasting weight management works best when healthy meals are familiar, satisfying
   {
     title: "How to Apply for a Kenyan Passport in 2026: Fees, Requirements and Step-by-Step Guide",
     category: "Travel",
+    slug: "kenyan-passport-application-guide-2026",
+    seoTitle: "How to Apply for a Kenyan Passport in 2026: Fees & Steps",
+    description: "Kenyan passport requirements, fees, eCitizen application steps, biometric capture at an immigration centre and collection, explained for 2026.",
     date: "2026-11-23",
     format: "markdown",
     image: "https://images.unsplash.com/photo-1577345848762-8b7cab61de4d?auto=format&fit=crop&w=1600&q=75",
@@ -665,6 +708,9 @@ Applying for a Kenyan passport in 2026 starts with an eCitizen account, accurate
   {
     title: "Opposition Quits IEBC Talks, Saying 2027 Reform Concerns Were Ignored",
     category: "Politics",
+    slug: "opposition-quits-iebc-talks-2027-reforms",
+    seoTitle: "Opposition Walks Out of IEBC Talks Over 2027 Reforms",
+    description: "Rigathi Gachagua and other opposition figures left an IEBC consultative session, saying their concerns were left off the agenda. President Ruto hit back.",
     date: "2026-11-19",
     image: "https://images.unsplash.com/photo-1675855549790-20aabcde8db2?auto=format&fit=crop&w=1600&q=75",
     caption: "Illustrative image: the flag of Kenya. Photo: engin akyurt / Unsplash.",
@@ -692,6 +738,9 @@ Kenyans go to the polls on Tuesday, August 10, 2027.`,
   {
     title: "Nine Killed in Two Nairobi Construction Collapses in Two Days",
     category: "Nairobi",
+    slug: "nairobi-building-collapses-nine-killed",
+    seoTitle: "Nine Killed in Two Nairobi Construction Collapses",
+    description: "An unfinished eight-storey block near the SGR terminus collapsed, killing six. A day later a wall at a Riverside site fell, killing at least three.",
     date: "2026-11-14",
     image: "https://images.unsplash.com/photo-1741916541913-7203d2be5e6e?auto=format&fit=crop&w=1600&q=75",
     caption: "Illustrative image: a building under construction with scaffolding, not either of the Nairobi sites. Photo: Salvador Rios / Unsplash.",

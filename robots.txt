@@ -1,8 +1,31 @@
+# IMMA News — https://immanews.com
+# Search engines and AI answer engines are welcome to read and cite our public pages.
+
+# Google (web search, Google News, Discover, Images)
+User-agent: Googlebot
+User-agent: Googlebot-News
+User-agent: Googlebot-Image
+# Microsoft Bing (also powers Copilot answers)
+User-agent: Bingbot
+# AI search and answer engines (they cite and link to their sources)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+# Everyone else
 User-agent: *
 Allow: /
+# Private or admin pages (signed-in dashboards, invoices, one-time links)
 Disallow: /ads-admin.html
+Disallow: /resources-admin.html
 Disallow: /advertiser.html
 Disallow: /invoice.html
-Disallow: /resources-admin.html
+Disallow: /account.html
+Disallow: /unsubscribe.html
+Disallow: /signin.html
 
 Sitemap: https://immanews.com/sitemap.xml
+Sitemap: https://immanews.com/news-sitemap.xml

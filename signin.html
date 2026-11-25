@@ -9,6 +9,7 @@
   <meta name="description" content="Sign in or create your free IMMA News account with Google.">
   <meta name="robots" content="noindex">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="pages.css">
@@ -91,7 +92,7 @@
     <div class="sf-col">
       <h2 class="sf-col-title">Explore IMMA</h2>
       <button class="sf-col-toggle" type="button" aria-expanded="false" aria-controls="sf-col-0">Explore IMMA<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <ul id="sf-col-0"><li><a href="/index.html#news">Latest News</a></li><li><a href="/index.html?c=Politics">Politics &amp; Governance</a></li><li><a href="/index.html?c=Sports">Sports</a></li><li><a href="/history/before-they-became-famous/">History &amp; Heritage</a></li></ul>
+      <ul id="sf-col-0"><li><a href="/news/">Latest News</a></li><li><a href="/index.html?c=Politics">Politics &amp; Governance</a></li><li><a href="/index.html?c=Sports">Sports</a></li><li><a href="/history/before-they-became-famous/">History &amp; Heritage</a></li></ul>
     </div><div class="sf-col">
       <h2 class="sf-col-title">Useful Information</h2>
       <button class="sf-col-toggle" type="button" aria-expanded="false" aria-controls="sf-col-1">Useful Information<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -103,7 +104,7 @@
     </div><div class="sf-col">
       <h2 class="sf-col-title">About &amp; Support</h2>
       <button class="sf-col-toggle" type="button" aria-expanded="false" aria-controls="sf-col-3">About &amp; Support<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <ul id="sf-col-3"><li><a href="/about.html">About IMMA News</a></li><li><a href="/about.html#imma-media">About IMMA Media</a></li><li><a href="/about.html#editorial">Editorial Standards</a></li><li><a href="/corrections.html">Corrections &amp; Complaints</a></li><li><a href="/contact.html">Contact Us</a></li><li><a href="/faq.html">Frequently Asked Questions</a></li><li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/terms.html">Terms of Use</a></li></ul>
+      <ul id="sf-col-3"><li><a href="/about.html">About IMMA News</a></li><li><a href="/about.html#imma-media">About IMMA Media</a></li><li><a href="/editorial-policy.html">Editorial Policy</a></li><li><a href="/fact-checking.html">Fact-Checking Policy</a></li><li><a href="/masthead.html">Masthead</a></li><li><a href="/corrections.html">Corrections &amp; Complaints</a></li><li><a href="/contact.html">Contact Us</a></li><li><a href="/faq.html">Frequently Asked Questions</a></li><li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/terms.html">Terms of Use</a></li></ul>
     </div>
   </nav>
 </div>
@@ -132,7 +133,7 @@
   <nav aria-label="Legal"><ul>
     <li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/terms.html">Terms of Use</a></li>
     <li><button type="button" class="sf-linkbtn" data-cookie-settings>Cookie Settings</button></li>
-    <li><a href="/about.html#editorial">Editorial Standards</a></li><li><a href="/sitemap.html">Sitemap</a></li><li><a href="/feed.xml">RSS Feed</a></li><li><a href="/accessibility.html">Accessibility</a></li>
+    <li><a href="/editorial-policy.html">Editorial Policy</a></li><li><a href="/sitemap.html">Sitemap</a></li><li><a href="/feed.xml">RSS Feed</a></li><li><a href="/accessibility.html">Accessibility</a></li>
   </ul></nav>
   <button type="button" class="sf-top" data-back-to-top><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Back to top</span></button>
 </div></div>
@@ -149,7 +150,8 @@
       const btn = document.getElementById("google-btn");
       const status = document.getElementById("auth-status");
       const next = new URLSearchParams(location.search).get("next");
-      const safeNext = next && /^[a-z0-9_-]+\.html([?#].*)?$/i.test(next) ? next : "account.html";
+      // Only pages on this site: "page.html" or a site path such as "/news/kenya/story-slug/"
+      const safeNext = next && (/^[a-z0-9_-]+\.html([?#].*)?$/i.test(next) || /^\/(?!\/)[a-z0-9_\/.-]*$/i.test(next)) ? next : "account.html";
       const say = (msg, kind) => { status.hidden = false; status.className = "auth-status " + (kind || ""); status.textContent = msg; };
 
       if (!A.configured) {

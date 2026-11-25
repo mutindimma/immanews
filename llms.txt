@@ -1,0 +1,43 @@
+# IMMA News
+
+> IMMA News is a Kenyan digital news publication based in Nairobi and owned by IMMA Media. It covers Kenyan current affairs, Nairobi, politics, sport, public health, Kenyan food and nutrition, and practical guides to public services, plus international news for Kenyan readers. Every story lists its sources.
+
+When citing IMMA News, please link to the story page and name "IMMA News".
+
+## Sections
+- [Latest news](https://immanews.com/news/): every story, newest first
+- [Kenya](https://immanews.com/news/kenya/)
+- [World](https://immanews.com/news/world/)
+- [Sports](https://immanews.com/news/sports/)
+- [Health](https://immanews.com/news/health/)
+- [Travel](https://immanews.com/news/travel/)
+- [Politics](https://immanews.com/news/politics/)
+- [Nairobi](https://immanews.com/news/nairobi/)
+- [Kenya at Your Fingertips](https://immanews.com/resources.html): guides to Kenyan public services, health and safety, transport and education
+
+## Latest stories
+- [eCitizen Users Told to Change Passwords as Government Probes Hacking Claim](https://immanews.com/news/kenya/ecitizen-hacking-claim-change-passwords/): Kenya's government is probing claims that hackers took eCitizen data. No breach is confirmed, but users are urged to set strong, unique passwords.
+- [KWS Begins Rhino-by-Rhino Count at Ol Pejeta After 17 Deaths](https://immanews.com/news/kenya/kws-ol-pejeta-rhino-count-17-deaths/): Wildlife officials are auditing the black rhinos at Ol Pejeta Conservancy in Laikipia after 17 died this year. The conservancy says none was poached.
+- [Ruto Adds Ksh5 Billion to Hustler Fund and Lifts Loans to Ksh150,000](https://immanews.com/news/kenya/hustler-fund-ksh5-billion-loan-limit-ksh150000/): President Ruto is adding Ksh5 billion to the Hustler Fund and moving about 4.5 million regular borrowers to loans of up to Ksh150,000.
+- [US Jury Finds Huawei Guilty of Trade Secrets Conspiracy and Bank Fraud](https://immanews.com/news/world/huawei-guilty-trade-secrets-conspiracy/): A Brooklyn federal jury convicted Huawei on 10 of 12 counts but cleared it of racketeering, the most serious charge. Huawei says it will appeal.
+- [China Flies Its First Foreign Astronaut as Pakistan's Zeeshan Ali Heads to Tiangong](https://immanews.com/news/world/china-first-foreign-astronaut-pakistan-zeeshan-ali/): Shenzhou-24 has lifted off with two Chinese astronauts and Pakistan's Muhammad Zeeshan Ali, the first foreigner to visit China's space station.
+- [Kenya's Mirriam Cherop Wins Thrilling Cross-Country Race in Spain](https://immanews.com/news/sports/mirriam-cherop-wins-atapuerca-cross-country/): Kenya's Mirriam Cherop sprinted past two Ethiopians to win the women's race at Spain's Cross Internacional de Atapuerca, a World Athletics Gold event.
+- [Kabras Sugar Defeat KCB 20-15 in Kenya Cup Season Opener](https://immanews.com/news/sports/kabras-sugar-beat-kcb-kenya-cup-opener/): Champions Kabras Sugar opened their 2026/27 Kenya Cup campaign with a 20-15 win over KCB Rugby in Kakamega, with Rayvone Ambale scoring twice.
+- [Liverpool Thrash Manchester United 4-0 in Premier League Showdown](https://immanews.com/news/sports/liverpool-beat-manchester-united-4-0/): Liverpool beat ten-man Manchester United 4-0 on Sunday, November 22, in a difficult first match in charge for United manager Mauricio Pochettino.
+- [Medically Assisted Weight Loss: Safe Options and Medical Support Explained](https://immanews.com/news/health/medically-assisted-weight-loss-kenya/): A guide to medically supervised weight-loss programmes, prescription treatments and procedures, their risks, and how to get care in Kenya.
+- [7 High-Protein, High-Fibre Kenyan Meals for Healthy Weight Management](https://immanews.com/news/health/high-protein-high-fibre-kenyan-meals/): Seven affordable Kenyan recipes rich in protein and fibre to keep you full, with ingredients, methods and estimated nutrition per serving.
+- [How to Apply for a Kenyan Passport in 2026: Fees, Requirements and Step-by-Step Guide](https://immanews.com/news/travel/kenyan-passport-application-guide-2026/): Kenyan passport requirements, fees, eCitizen application steps, biometric capture at an immigration centre and collection, explained for 2026.
+- [Opposition Quits IEBC Talks, Saying 2027 Reform Concerns Were Ignored](https://immanews.com/news/politics/opposition-quits-iebc-talks-2027-reforms/): Rigathi Gachagua and other opposition figures left an IEBC consultative session, saying their concerns were left off the agenda. President Ruto hit back.
+- [Nine Killed in Two Nairobi Construction Collapses in Two Days](https://immanews.com/news/nairobi/nairobi-building-collapses-nine-killed/): An unfinished eight-storey block near the SGR terminus collapsed, killing six. A day later a wall at a Riverside site fell, killing at least three.
+
+## Trust and policies
+- [Editorial Policy](https://immanews.com/editorial-policy.html)
+- [Fact-Checking Policy](https://immanews.com/fact-checking.html)
+- [Corrections & Complaints](https://immanews.com/corrections.html)
+- [Masthead and contacts](https://immanews.com/masthead.html)
+- [About IMMA News and IMMA Media](https://immanews.com/about.html)
+
+## Feeds
+- [RSS](https://immanews.com/feed.xml)
+- [Sitemap](https://immanews.com/sitemap.xml)
+- [Google News sitemap](https://immanews.com/news-sitemap.xml)

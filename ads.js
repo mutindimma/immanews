@@ -208,7 +208,8 @@
 
   // ---------- In-article advert: after the 3rd paragraph of any opened story ----------
   function addInArticle() {
-    const body = document.querySelector("#reader-body .reader-text");
+    // Story pages (/news/...) and the pop-up reader
+    const body = document.querySelector("[data-story-body]") || document.querySelector("#reader-body .reader-text");
     if (!body || body.querySelector("[data-ad-slot]") || body.closest("[data-no-ads]")) return;
     if (body.querySelector(".label--sponsored")) return;   // no adverts inside sponsored content
     const paras = body.querySelectorAll(":scope > p:not(.source):not(.lead):not(.credit)");
@@ -258,6 +259,7 @@
     if (grid) new MutationObserver(() => { addSponsored(); syncCategoryBanner(); }).observe(grid, { childList: true });
     const rb = document.getElementById("reader-body");
     if (rb) new MutationObserver(addInArticle).observe(rb, { childList: true });
+    addInArticle();
   }).catch(() => {
     // Adverts are optional: if they fail to load, hide the empty slots and carry on.
     document.querySelectorAll("[data-ad-slot]").forEach((s) => (s.hidden = true));

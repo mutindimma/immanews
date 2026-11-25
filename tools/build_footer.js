@@ -31,7 +31,7 @@ function pages(dir) {
   let out = [];
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
     const p = path.join(dir, e.name);
-    if (e.isDirectory()) { if (["history"].includes(path.relative(ROOT, p).split(path.sep)[0])) out = out.concat(pages(p)); }
+    if (e.isDirectory()) { if (["history", "news", "authors"].includes(path.relative(ROOT, p).split(path.sep)[0])) out = out.concat(pages(p)); }
     else if (e.name.endsWith(".html") && !SKIP.has(e.name) && !e.name.startsWith("google")) out.push(p);
   }
   return out;
@@ -91,6 +91,9 @@ for (const file of pages(ROOT)) {
   // Right after <head> (keeping <meta charset> first so the browser reads the encoding early)
   if (!NO_GTM.has(name)) html = html.replace(/<head>\s*(<meta charset="utf-8">\s*)?/i, (m, cs) => "<head>\n  " + (cs ? cs.trim() + "\n  " : "") + GTM + "\n  ");
   if (!html.includes("footer.css")) html = html.replace(/(<link rel="stylesheet" href="[^"]*"[^>]*>)(?![\s\S]*<link rel="stylesheet")/, `$1\n  <link rel="stylesheet" href="/footer.css">`);
+  // Font files come from fonts.gstatic.com: open that connection early (render-blocking otherwise)
+  if (html.includes("fonts.googleapis.com/css2") && !html.includes('href="https://fonts.gstatic.com"'))
+    html = html.replace(/(\s*)(<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">)/, '$1$2$1<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
   if (!/src="\/?config\.js"/.test(html)) html = html.replace("</body>", `  <script src="/config.js"></script>\n</body>`);
   if (!/<script src="\/?footer\.js">/.test(html)) html = html.replace("</body>", `  <script src="/footer.js"></script>\n</body>`);
   // Footer headings use the site's Playfair Display serif
@@ -102,9 +105,9 @@ console.log(`${changed} page(s) updated; categories with stories: ${[...cats].so
 // ---------- RSS feed ----------
 const SITE = "https://immanews.com";
 const x = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" }[c]));
-const storyKey = (s) => (s.date + "-" + s.title).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 120);   // same as auth.js
+const U = require(path.join(ROOT, "story-url.js"));
 const items = [
-  ...NEWS.map((s) => ({ ...s, link: `${SITE}/index.html?story=${storyKey(s)}` })),
+  ...NEWS.filter((s) => !s.url).map((s) => ({ ...s, link: SITE + U.storyPath(s) })),
   ...SERIES.map((s) => ({ ...s, link: SITE + s.url }))
 ].filter((s) => s.title && s.date).sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 50);
 const rfc = (d) => new Date(d + "T06:00:00+03:00").toUTCString();

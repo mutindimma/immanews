@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Google News sitemap: stories published in the last 48 hours (built 2026-11-25T16:13:32.065Z). Rebuilt by tools/build_articles.js. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  <url>
+    <loc>https://immanews.com/news/kenya/ecitizen-hacking-claim-change-passwords/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>IMMA News</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-25</news:publication_date>
+      <news:title>eCitizen Users Told to Change Passwords as Government Probes Hacking Claim</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://immanews.com/news/kenya/kws-ol-pejeta-rhino-count-17-deaths/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>IMMA News</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-25</news:publication_date>
+      <news:title>KWS Begins Rhino-by-Rhino Count at Ol Pejeta After 17 Deaths</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://immanews.com/news/kenya/hustler-fund-ksh5-billion-loan-limit-ksh150000/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>IMMA News</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-25</news:publication_date>
+      <news:title>Ruto Adds Ksh5 Billion to Hustler Fund and Lifts Loans to Ksh150,000</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://immanews.com/news/world/huawei-guilty-trade-secrets-conspiracy/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>IMMA News</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-25</news:publication_date>
+      <news:title>US Jury Finds Huawei Guilty of Trade Secrets Conspiracy and Bank Fraud</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://immanews.com/news/world/china-first-foreign-astronaut-pakistan-zeeshan-ali/</loc>
+    <news:news>
+      <news:publication>
+        <news:name>IMMA News</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2026-11-25</news:publication_date>
+      <news:title>China Flies Its First Foreign Astronaut as Pakistan&apos;s Zeeshan Ali Heads to Tiangong</news:title>
+    </news:news>
+  </url>
+</urlset>

@@ -320,9 +320,9 @@ def main():
     # Bake the global footer into the generated pages and refresh the RSS feed
     try:
         import os, subprocess
-        subprocess.run(["node", os.path.join(os.path.dirname(os.path.abspath(__file__)), "build_footer.js")], check=True)
+        subprocess.run(["node", os.path.join(os.path.dirname(os.path.abspath(__file__)), "build_articles.js")], check=True)
     except Exception as e:
-        print("Run `node tools/build_footer.js` to add the footer:", e)
+        print("Run `node tools/build_articles.js` to add the footer:", e)
 
 
 if __name__ == "__main__":
