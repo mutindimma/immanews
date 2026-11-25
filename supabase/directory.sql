@@ -666,6 +666,8 @@ create trigger biz_claim_after after update on public.business_claims for each r
 create or replace function public.biz_subscription_guard()
 returns trigger language plpgsql security definer set search_path = public as $$
 begin
+  -- a business was deleted: keep the billing record, just detach it
+  if tg_op = 'UPDATE' and new.business_id is null and old.business_id is not null then return new; end if;
   if not public.biz_privileged() then
     raise exception 'Please choose a package from your dashboard.';
   end if;
@@ -746,13 +748,14 @@ create or replace function public.biz_payment_guard()
 returns trigger language plpgsql security definer set search_path = public as $$
 declare s public.business_subscriptions;
 begin
+  if tg_op = 'UPDATE' and new.business_id is null and old.business_id is not null then return new; end if;   -- business deleted
   select * into s from public.business_subscriptions where id = new.subscription_id;
   if not found then raise exception 'Subscription not found.'; end if;
   new.reference := upper(trim(new.reference));
-  new.business_id := s.business_id;
+  new.business_id := coalesce(s.business_id, new.business_id);
   if not public.is_admin() then
     if tg_op <> 'INSERT' then raise exception 'Only IMMA Media can change a payment.'; end if;
-    if not public.biz_is_owner(s.business_id) then raise exception 'Not your business.'; end if;
+    if s.business_id is null or not public.biz_is_owner(s.business_id) then raise exception 'Not your business.'; end if;
     if s.status <> 'pending_payment' then raise exception 'This package does not need a payment.'; end if;
     if new.method not in ('mpesa_manual', 'bank_transfer') then raise exception 'Choose M-Pesa or bank transfer.'; end if;
     new.status := 'pending_verification'; new.verified_by := null; new.verified_at := null; new.note := null; new.reported_by := auth.uid();
@@ -1132,3 +1135,16 @@ create policy "Business docs read own or admin" on storage.objects for select to
 drop policy if exists "Business docs delete admin" on storage.objects;
 create policy "Business docs delete admin" on storage.objects for delete to authenticated
   using (bucket_id = 'business-docs' and ((storage.foldername(name))[1] = auth.uid()::text or public.is_admin()));
+
+-- =============================================================
+--  Keep invoices, subscriptions and payments when a business is deleted
+--  (accounting records). Added 25 Nov 2026; safe to run again.
+-- =============================================================
+alter table public.business_subscriptions alter column business_id drop not null;
+alter table public.business_subscriptions drop constraint if exists business_subscriptions_business_id_fkey;
+alter table public.business_subscriptions add constraint business_subscriptions_business_id_fkey
+  foreign key (business_id) references public.businesses (id) on delete set null;
+alter table public.business_invoices alter column business_id drop not null;
+alter table public.business_invoices drop constraint if exists business_invoices_business_id_fkey;
+alter table public.business_invoices add constraint business_invoices_business_id_fkey
+  foreign key (business_id) references public.businesses (id) on delete set null;

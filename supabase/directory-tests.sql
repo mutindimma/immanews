@@ -251,6 +251,18 @@ exception when others then perform pg_temp.ok('other user cannot read stats', tr
 end $$;
 select pg_temp.ok('other user cannot read enquiries', (select count(*) from public.business_enquiries where business_id = current_setting('test.b')::uuid) = 0);
 
+-- ---------- 8. Deleting a business keeps its billing records ----------
+select pg_temp.act('00000000-0000-4000-8000-0000000000a4');
+do $$
+begin
+  delete from public.businesses where id = current_setting('test.b')::uuid;
+  perform pg_temp.ok('admin can delete a business with payments', not exists (select 1 from public.businesses where id = current_setting('test.b')::uuid));
+  perform pg_temp.ok('invoice kept after deletion', exists (select 1 from public.business_invoices where subscription_id = current_setting('test.sid')::uuid));
+  perform pg_temp.ok('payment kept after deletion', exists (select 1 from public.business_payments where subscription_id = current_setting('test.sid')::uuid and status = 'confirmed'));
+  perform pg_temp.ok('reviews removed with the business', not exists (select 1 from public.business_reviews where id = current_setting('test.rid')::uuid));
+exception when others then perform pg_temp.ok('delete business with payments', false, sqlerrm);
+end $$;
+
 -- ---------- Report ----------
 reset role;
 do $$

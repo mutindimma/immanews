@@ -39,7 +39,7 @@
 .bd-block-sec > .wrap > h2, .bd-sec-head h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); }
 .bd-sec-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
 .bd-sec-head p { margin: 4px 0 0; color: var(--muted); }
-.bd-sec-head a { color: var(--brand); font-weight: 700; }
+.bd-sec-head a:not(.bd-btn) { color: var(--brand); font-weight: 700; }
 
 /* Categories */
 .bd-cats { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
@@ -282,3 +282,8 @@ fieldset.bd-fieldset legend { font-weight: 800; padding: 0 6px; }
   .bd-mybiz-row { flex-wrap: wrap; }
 }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* Buttons keep their colours inside any container */
+a.bd-btn { color: #fff; text-decoration: none; }
+a.bd-btn.bd-btn-ghost { color: var(--brand); }
+a.bd-btn.bd-btn-gold { color: var(--on-accent, #04163a); }
+.bd-hero-ctas a.bd-btn.bd-btn-ghost, .bd-band a.bd-btn.bd-btn-ghost { color: #fff; }
