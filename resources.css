@@ -4,7 +4,7 @@
 .rc-hero { padding: 56px 0 48px; }
 .rc-hero h1 { font-family: "Playfair Display", Georgia, serif; }
 .rc-search { display: flex; align-items: center; gap: 10px; margin-top: 26px; max-width: 760px; background: #fff; border-radius: 99px; padding: 6px 6px 6px 18px; box-shadow: 0 14px 40px rgba(0,0,0,.25); color: #55607a; }
-.rc-search input { flex: 1; min-width: 0; border: 0; outline: 0; font: 500 1.05rem Inter, sans-serif; color: #0a1630; background: transparent; padding: 10px 0; }
+.rc-search input { flex: 1; min-width: 0; border: 0; outline: 0; font: 500 1.05rem "Playfair Display", Georgia, "Times New Roman", serif; color: #0a1630; background: transparent; padding: 10px 0; }
 .rc-search .btn-gold { padding: 11px 22px; }
 
 /* Emergency panel */
@@ -53,7 +53,7 @@
 .rc-card b { font-size: 1.02rem; line-height: 1.3; }
 .rc-card-sum { color: var(--muted); font-size: .9rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .rc-card-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: .76rem; color: var(--muted); margin-top: 4px; }
-.vbadge { display: inline-block; padding: 2px 9px; border-radius: 99px; font: 700 .7rem Inter, sans-serif; letter-spacing: .03em; }
+.vbadge { display: inline-block; padding: 2px 9px; border-radius: 99px; font: 700 .7rem "Playfair Display", Georgia, "Times New Roman", serif; letter-spacing: .03em; }
 .vbadge.ok { background: #e5f6ec; color: #0b5d31; }
 .vbadge.part { background: #fff4d1; color: #6b4b00; }
 .vbadge.warn { background: #fde8e8; color: #8a1c1c; }
@@ -83,7 +83,7 @@
 .ch { font-size: .75rem; font-weight: 700; margin-left: 4px; }
 .ch.up { color: var(--down); } .ch.down { color: var(--up); } .ch.same { color: var(--muted); font-weight: 600; }
 .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-.tabs button { border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 99px; font: 600 .82rem Inter, sans-serif; cursor: pointer; color: var(--text); }
+.tabs button { border: 1px solid var(--line); background: var(--surface); padding: 6px 12px; border-radius: 99px; font: 600 .82rem "Playfair Display", Georgia, "Times New Roman", serif; cursor: pointer; color: var(--text); }
 .tabs button.on { background: var(--navy); color: #fff; border-color: var(--navy); }
 .timeline { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 8px; }
 .ev { display: grid; grid-template-columns: 210px 1fr; gap: 4px 14px; padding: 10px 12px; border-left: 4px solid var(--brand); background: var(--soft); border-radius: 8px; }

@@ -4,7 +4,7 @@
    ========================================================= */
 .ad-slot { --ad-w: 728; --ad-h: 90; width: 100%; margin: 18px auto; text-align: center; }
 .ad-slot[hidden] { display: none !important; }
-.ad-label { display: block; font: 600 .66rem/1 Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; text-align: center; }
+.ad-label { display: block; font: 600 .66rem/1 "Playfair Display", Georgia, "Times New Roman", serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; text-align: center; }
 .ad-frame { position: relative; width: 100%; aspect-ratio: var(--ad-w) / var(--ad-h); border-radius: 6px; overflow: hidden; background: var(--soft); border: 1px solid var(--line); }
 .ad-frame { min-height: 0; }
 .ad-frame > a:not(.ad-house) { display: block; width: 100%; height: 100%; overflow: hidden; }
@@ -32,9 +32,9 @@
   background: radial-gradient(ellipse at 85% 10%, rgba(253,202,28,.22), transparent 55%), linear-gradient(110deg, var(--navy) 0%, var(--navy-2) 70%, #0b4fa8 100%); }
 .ad-house__emblem { height: 70%; width: auto; max-height: 62px; flex-shrink: 0; filter: drop-shadow(0 2px 6px rgba(0,0,0,.35)); background: #fff; border-radius: 10px; padding: 4px; }
 .ad-house__text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.ad-house__text b { font: 800 clamp(.9rem, 1.6vw, 1.15rem)/1.15 Inter, sans-serif; letter-spacing: .06em; color: var(--accent-2); }
+.ad-house__text b { font: 800 clamp(.9rem, 1.6vw, 1.15rem)/1.15 "Playfair Display", Georgia, "Times New Roman", serif; letter-spacing: .06em; color: var(--accent-2); }
 .ad-house__text span { font-size: .85rem; color: #dbe4f5; line-height: 1.35; }
-.ad-house__btn { margin-left: auto; flex-shrink: 0; padding: 8px 18px; border-radius: 99px; font: 700 .85rem Inter, sans-serif; color: var(--on-accent);
+.ad-house__btn { margin-left: auto; flex-shrink: 0; padding: 8px 18px; border-radius: 99px; font: 700 .85rem "Playfair Display", Georgia, "Times New Roman", serif; color: var(--on-accent);
   background: linear-gradient(135deg, var(--accent), var(--accent-2)); transition: transform .15s; }
 .ad-house:hover .ad-house__btn { transform: translateY(-1px); }
 .ad-house:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }

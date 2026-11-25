@@ -58,7 +58,7 @@ a.chip { display: inline-block; text-decoration: none; }
 .cta-row h2 { margin: 0 0 6px; }
 .cta-row p { margin: 0; color: var(--muted); }
 .cta-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
-.btn-gold, .btn-outline { display: inline-block; padding: 12px 24px; border-radius: 99px; font: 700 1rem Inter, sans-serif; cursor: pointer; transition: transform .15s, filter .15s, background .15s, color .15s; border: 2px solid transparent; }
+.btn-gold, .btn-outline { display: inline-block; padding: 12px 24px; border-radius: 99px; font: 700 1rem "Playfair Display", Georgia, "Times New Roman", serif; cursor: pointer; transition: transform .15s, filter .15s, background .15s, color .15s; border: 2px solid transparent; }
 .btn-gold { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); }
 .btn-gold:hover { transform: translateY(-1px); filter: brightness(1.05); }
 .btn-gold:disabled { opacity: .6; cursor: wait; transform: none; }
@@ -128,7 +128,7 @@ a.chip { display: inline-block; text-decoration: none; }
 .auth-perks li { display: flex; gap: 12px; align-items: center; background: var(--soft); border-radius: 10px; padding: 10px 14px; font-weight: 600; font-size: .95rem; }
 .auth-perks span { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-size: .85rem; flex-shrink: 0; }
 .auth-perks small { color: var(--muted); font-weight: 500; }
-.google-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 13px 18px; border: 1.5px solid #dadce0; border-radius: 99px; background: #fff; color: #1f1f1f; font: 600 1rem Inter, sans-serif; cursor: pointer; transition: box-shadow .15s, background .15s; }
+.google-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 13px 18px; border: 1.5px solid #dadce0; border-radius: 99px; background: #fff; color: #1f1f1f; font: 600 1rem "Playfair Display", Georgia, "Times New Roman", serif; cursor: pointer; transition: box-shadow .15s, background .15s; }
 .google-btn:hover:not(:disabled) { background: #f8faff; box-shadow: 0 2px 8px rgba(4,22,58,.15); }
 .google-btn:disabled { opacity: .55; cursor: not-allowed; }
 .auth-status { margin: 14px 0 0; padding: 10px 12px; border-radius: 8px; font-size: .92rem; }
@@ -163,7 +163,7 @@ a.chip { display: inline-block; text-decoration: none; }
 .saved-list .remove { border: 0; background: none; color: var(--muted); font-size: 1rem; cursor: pointer; padding: 6px; border-radius: 6px; }
 .saved-list .remove:hover { background: var(--soft); color: var(--down); }
 
-.save-btn { float: right; margin: 0 0 10px 12px; padding: 7px 14px; border-radius: 99px; border: 1.5px solid var(--brand); background: var(--surface); color: var(--brand); font: 700 .85rem Inter, sans-serif; cursor: pointer; }
+.save-btn { float: right; margin: 0 0 10px 12px; padding: 7px 14px; border-radius: 99px; border: 1.5px solid var(--brand); background: var(--surface); color: var(--brand); font: 700 .85rem "Playfair Display", Georgia, "Times New Roman", serif; cursor: pointer; }
 .save-btn.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .save-btn:disabled { opacity: .6; }
 
