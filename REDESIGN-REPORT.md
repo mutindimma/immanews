@@ -183,6 +183,15 @@ Results are from Lighthouse 12 run locally against the live site. Scores vary by
 
 The accessibility fixes were deployed after the "after" runs and have not been re-measured.
 
+**Re-measured after the photos moved to immanews.com** (26 Nov 2026, homepage):
+
+| Page | Performance | Accessibility | Best practices | SEO | LCP | CLS |
+|---|---|---|---|---|---|---|
+| Home, mobile | 88 | **100** | **100** | 100 | 3.2 s | 0.002 |
+| Home, desktop | 85 | **100** | **100** | 100 | 1.7 s | 0.025 |
+
+The third-party cookie is gone, and accessibility and best practices are now 100.
+
 **Below 90, and why:**
 
 * **Render-blocking stylesheets:** about 0.6–1 s on mobile. These are the Google Fonts CSS and 4 site stylesheets.
