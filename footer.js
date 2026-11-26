@@ -484,7 +484,7 @@ ${renderNewsletter(s)}
   <div class="sf-pref"><div><b>Essential</b><p>Your sign-in (only if you sign in), these preferences, and a short-lived copy of the footer and adverts so pages load faster.</p></div><span class="sf-pref-on">Always on</span></div>
   <div class="sf-pref"><div><b>Analytics</b><p>Google Tag Manager and Google Analytics cookies help us understand which pages readers visit, so we can improve IMMA News. Google receives your IP address and page visits.</p></div>
     <label class="sf-switch"><input type="checkbox" name="analytics"><span class="sf-sr">Allow analytics cookies</span><i aria-hidden="true"></i></label></div>
-  <div class="sf-pref"><div><b>Advert measurement</b><p>A random code, kept only until you close the tab, lets us count advert views and clicks fairly for advertisers. It is not a cookie and does not identify you.</p></div>
+  <div class="sf-pref"><div><b>Advert and readership measurement</b><p>A random code, kept only until you close the tab, lets us count advert views and clicks, business-directory visits and our most-read stories fairly. It is not a cookie and does not identify you.</p></div>
     <label class="sf-switch"><input type="checkbox" name="adMeasure"><span class="sf-sr">Allow advert measurement</span><i aria-hidden="true"></i></label></div>
   <p class="sf-small">Read more in our <a href="/privacy.html#storage">Privacy Policy</a>.</p>
   <div class="sf-dialog-btns"><button class="sf-btn sf-btn-ghost-dark" value="cancel" type="submit">Cancel</button><button class="sf-btn sf-btn-gold" value="save" type="submit">Save preferences</button></div>
