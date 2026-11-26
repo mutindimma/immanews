@@ -205,7 +205,7 @@ Before and after screenshots (desktop, tablet and phone for the home, article, d
 
 ## 7. Outstanding and external configuration
 
-* **The two Pexels story photos.** If you approve, I'll download them and store them on the site, which removes the third-party cookie.
+* **Pexels story photos: done (26 Nov 2026).** The three Pexels photos are now stored on immanews.com in four WebP sizes each (`images/stories/`), so the third-party cookie is gone.
 * **Performance above 90 on every page** would need the critical CSS built into each page and self-hosted fonts. That's a bigger change, available on request.
 * **Google AdSense** is still waiting for approval. No Google ad code is loaded, and adverts stay in clearly labelled, size-reserved spaces.
 * **Social media links** appear only once verified links are entered in Footer settings.

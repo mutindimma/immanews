@@ -221,7 +221,7 @@ The opening weekend demonstrated the competitive nature of Kenyan club rugby, wi
     seoTitle: "Liverpool Thrash Man United 4-0 in Pochettino's First Game",
     description: "Liverpool beat ten-man Manchester United 4-0 on Sunday, November 22, in a difficult first match in charge for United manager Mauricio Pochettino.",
     date: "2026-11-23",
-    image: "https://images.pexels.com/photos/12279964/pexels-photo-12279964.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    image: "/images/stories/football-stadium-aerial-1600.webp",
     caption: "Illustrative image: aerial view of a football stadium, not the Liverpool–Manchester United match. Photo: Antonio Ochoa / Pexels.",
     summary: "Liverpool secured an emphatic 4-0 victory over ten-man Manchester United on Sunday, November 22, in a difficult first match for United manager Mauricio Pochettino.",
     body: `Liverpool delivered one of the standout results of the Premier League weekend, defeating Manchester United 4-0 on Sunday, November 22, in a commanding performance against their traditional rivals.
@@ -246,12 +246,12 @@ Manchester United will now face renewed scrutiny over their defensive organisati
     seoTitle: "Medically Assisted Weight Loss in Kenya: Safe Options",
     description: "A guide to medically supervised weight-loss programmes, prescription treatments and procedures, their risks, and how to get care in Kenya.",
     date: "2026-11-23",
-    image: "https://images.pexels.com/photos/7659869/pexels-photo-7659869.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    image: "/images/stories/doctor-patient-consultation-1600.webp",
     caption: "A doctor consulting with a patient. Photo: Thirdman / Pexels.",
     extraImages: [
       { image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1400&q=75",
         caption: "A bowl of fresh vegetable salad as part of a balanced meal. Photo: Anna Pelzer / Unsplash." },
-      { image: "https://images.pexels.com/photos/38955514/pexels-photo-38955514.jpeg?auto=compress&cs=tinysrgb&w=1400",
+      { image: "/images/stories/trainers-outdoors-1600.webp",
         caption: "Casual trainers outdoors, a reminder of everyday physical activity. Photo: Duygu / Pexels." }
     ],
     summary: "Managing weight safely often involves more than willpower alone. This guide outlines medically supervised programmes, prescription treatments, procedures, safety risks, and how to access care in Kenya.",

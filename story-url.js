@@ -28,9 +28,17 @@
   }
   // Photos from Unsplash and Pexels can be resized and cropped by their own servers, so pages
   // download a picture the size it is shown at (much faster on phones) instead of a 1600px original.
-  function resizable(u) { return /^https:\/\/images\.(unsplash|pexels)\.com\//i.test(String(u || "")); }
+  // Photos stored on immanews.com come in four widths: /images/stories/<name>-480|800|1200|1600.webp
+  const LOCAL = /^\/?images\/stories\/(.+)-(480|800|1200|1600)\.webp$/;
+  const WIDTHS = [480, 800, 1200, 1600];
+  function isLocalSet(u) { return LOCAL.test(String(u || "")); }
+  function resizable(u) { return /^https:\/\/images\.(unsplash|pexels)\.com\//i.test(String(u || "")) || isLocalSet(u); }
   function imageUrl(u, w, h) {
     if (!resizable(u)) return u;
+    if (isLocalSet(u)) {
+      const name = LOCAL.exec(String(u))[1];
+      return `/images/stories/${name}-${WIDTHS.find((x) => x >= w) || 1600}.webp`;   // local copies keep their own shape (pages crop with CSS)
+    }
     const url = new URL(u);
     const q = url.searchParams;
     q.set("w", String(w));
@@ -39,7 +47,7 @@
     else { q.set("auto", "compress"); q.set("cs", "tinysrgb"); }
     return url.href;
   }
-  const api = { slugify, section, storyPath, resizable, imageUrl };
+  const api = { slugify, section, storyPath, resizable, imageUrl, isLocalSet };
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.IMMA_URL = api;
 })(typeof window !== "undefined" ? window : this);

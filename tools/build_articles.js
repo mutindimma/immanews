@@ -64,6 +64,8 @@ const sectionName = (cat) => cat === "International" ? "World" : cat;
 const img = U.imageUrl;
 function imageSet(s) {
   if (!s.image || /placeholder/.test(s.image)) return { src: SITE + "/images/og-image.png", w: 1200, h: 630, list: [SITE + "/images/og-image.png"], resizable: false };
+  // Local photo sets have their own shape, so no cropped sizes are claimed for them
+  if (U.isLocalSet(s.image)) return { src: abs(img(s.image, 1600)), w: null, h: null, list: [abs(img(s.image, 1600))], resizable: false };
   const resizable = U.resizable(s.image);
   if (!resizable) return { src: abs(s.image), w: null, h: null, list: [abs(s.image)], resizable };
   return { src: img(s.image, 1600, 900), w: 1600, h: 900, list: [img(s.image, 1600, 900), img(s.image, 1600, 1200), img(s.image, 1200, 1200)], resizable };
@@ -135,9 +137,10 @@ function paragraphs(body, extras = []) {
   extras.forEach((x, j) => {
     const at = Math.round(((j + 1) * parts.length) / (extras.length + 1));
     const src = U.resizable(x.image) ? img(x.image, 1200, 800) : local(x.image);
+    const dims = U.resizable(x.image) && !U.isLocalSet(x.image) ? ' width="1200" height="800"' : "";
     parts[at - 1] += `
       <figure class="bf-figure">
-        <img src="${esc(src)}" alt="${esc(altText(x))}" loading="lazy" decoding="async"${U.resizable(x.image) ? ' width="1200" height="800"' : ""}>
+        <img src="${esc(src)}" alt="${esc(altText(x))}" loading="lazy" decoding="async"${dims}>
         ${x.caption ? `<figcaption><span class="bf-cap">${esc(x.caption)}</span></figcaption>` : ""}
       </figure>`;
   });
