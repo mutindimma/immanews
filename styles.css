@@ -35,7 +35,7 @@
   /* Type */
   --font-head: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-ui: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --fs-xs: .75rem; --fs-sm: .875rem; --fs-md: 1rem; --fs-lg: 1.125rem; --fs-xl: 1.375rem;
   --fs-2xl: clamp(1.5rem, 2.4vw, 1.9rem); --fs-3xl: clamp(1.9rem, 3.6vw, 2.75rem); --fs-display: clamp(2.2rem, 4.6vw, 3.6rem);
 
@@ -55,6 +55,9 @@
     --brand: #C9D6EA; --brand-2: #9FB7DC; --brand-soft: #18263A; --link: #B9CCEA; --gold-text: #D9BC80; --up: #4CC38A; --down: #FF7B72;
   }
 }
+
+/* Fallback with Inter's proportions, so text does not jump when the web font arrives */
+@font-face { font-family: "Inter Fallback"; src: local("Arial"), local("Helvetica"); ascent-override: 90.44%; descent-override: 22.52%; line-gap-override: 0%; size-adjust: 107.12%; }
 
 /* ---------- Base ---------- */
 * { box-sizing: border-box; }
@@ -137,7 +140,8 @@ p { margin: 0 0 1em; }
 .mh-subscribe { font: 600 var(--fs-sm) var(--font-ui); padding: 7px 16px; background: var(--gold); color: var(--navy); border-radius: var(--radius); }
 .mh-subscribe:hover { background: #B8924B; }
 .mh-nav { border-top: 1px solid var(--line); background: var(--surface); }
-.mh-nav ul { display: flex; flex-wrap: wrap; justify-content: center; list-style: none; padding: 0; margin: 0 auto; gap: 0; }
+.mh-nav ul { display: flex; flex-wrap: nowrap; justify-content: safe center; list-style: none; padding: 0; margin: 0 auto; gap: 0; overflow-x: auto; scrollbar-width: none; }
+.mh-nav ul::-webkit-scrollbar { display: none; }
 .mh-nav a { display: block; padding: 11px 13px; font: 600 .86rem var(--font-ui); color: var(--text); border-bottom: 2px solid transparent; white-space: nowrap; }
 .mh-nav a:hover { color: var(--link); }
 .mh-nav a[aria-current="page"] { border-bottom-color: var(--gold); }
@@ -284,7 +288,7 @@ p { margin: 0 0 1em; }
 .countdown .kicker { display: block; }
 .countdown b { display: block; font: 700 3rem/1 var(--font-head); color: var(--text); margin: var(--s2) 0 var(--s1); font-variant-numeric: lining-nums; }
 .countdown span { font: 500 var(--fs-sm) var(--font-ui); color: var(--muted); }
-.countdown p { margin: var(--s2) 0 0; font: 500 var(--fs-xs) var(--font-ui); color: var(--muted); }
+.countdown p { margin: var(--s2) 0 0; font: 500 var(--fs-xs)/1.5 var(--font-ui); color: var(--muted); min-height: 3em; }
 .countdown a { color: var(--link); text-decoration: underline; }
 
 /* Resource centre strip */
