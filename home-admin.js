@@ -45,7 +45,8 @@
   }
 
   function draw() {
-    const order = (H.order && H.order.length ? H.order : DEFAULT_ORDER).filter((k) => SECTIONS[k]).concat(DEFAULT_ORDER.filter((k) => !(H.order || []).includes(k)));
+    const saved = (H.order || []).filter((k) => SECTIONS[k]);
+    const order = saved.length ? saved.concat(DEFAULT_ORDER.filter((k) => !saved.includes(k))) : DEFAULT_ORDER.slice();
     const hidden = new Set(H.hidden || []);
     const opt = (sel) => stories.map((s) => `<option value="${esc(s.key)}"${sel === s.key ? " selected" : ""}>${esc(s.date)} · ${esc(s.title)}</option>`).join("");
     const b = H.breaking || {};
@@ -54,6 +55,7 @@
         <h2>Homepage &amp; design</h2>
         <p class="muted">Changes go live on the homepage straight away for all readers. The homepage is also written as plain HTML when the site is built, so search engines always see the latest stories.</p>
       </div>
+      <style>#ha-form label{display:grid;gap:4px;margin:10px 0;font-weight:600}#ha-form input:not([type=checkbox]):not([type=color]),#ha-form select{width:100%;max-width:640px;padding:9px;border:1px solid var(--line);border-radius:2px;font:inherit;font-weight:400}#ha-order label{display:inline-flex!important;margin:0}#ha-order button{padding:2px 8px;margin-left:4px}</style>
       <form class="card" id="ha-form">
         <h3>Lead and featured stories</h3>
         <label>Lead story<select name="lead"><option value="">Automatic (story marked featured, otherwise the newest)</option>${opt(H.lead)}</select></label>
