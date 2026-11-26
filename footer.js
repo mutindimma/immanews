@@ -106,7 +106,7 @@
       proud: "Proudly Kenyan. Connected to the World.",
       copyright: "© {year} IMMA Media. All rights reserved."
     },
-    colors: { bg: "#09192E", gold: "#EAB43F", text: "#FFFFFF", muted: "#B4C0D1", line: "#364357" }
+    colors: { bg: "#0B192C", gold: "#C5A059", text: "#FFFFFF", muted: "#B9C1CD", line: "#2B3A50" }
   };
 
   const SOCIAL = {
@@ -447,7 +447,7 @@ ${renderNewsletter(s)}
       btn.disabled = false; form.removeAttribute("aria-busy"); btn.textContent = btn.dataset.label || "Subscribe";
     }
   }
-  root.IMMA_NEWSLETTER = { rpc, MESSAGES, EMAIL };
+  root.IMMA_NEWSLETTER = { rpc, MESSAGES, EMAIL, subscribe };
 
   // Cookie settings. Essential storage is always on. Optional:
   //   * analytics  — Google Tag Manager (GTM-KZZ2PRJM) loads only after the visitor accepts

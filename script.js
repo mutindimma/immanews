@@ -1,119 +1,133 @@
-const $ = (s) => document.querySelector(s);
-const fmt = (d) => new Date(d + "T00:00:00").toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
-const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const idx = (s) => NEWS.indexOf(s);
-const U = window.IMMA_URL;
-const href = (s) => esc(U.storyPath(s));
-// Pictures sized for where they are shown (Unsplash/Pexels resize on their side)
-const pic = (s, w = 480, h = 300) => esc(s.image ? U.imageUrl(s.image, w, h) : "images/placeholder.svg");
-const set = (s, sizes) => s.image && U.resizable(s.image) ? ` srcset="${sizes.map(([w, h]) => esc(U.imageUrl(s.image, w, h)) + " " + w + "w").join(", ")}"` : "";
-
-document.querySelectorAll("#year, [data-year]").forEach((el) => (el.textContent = new Date().getFullYear()));
-
-const stories = [...NEWS].sort((a, b) => b.date.localeCompare(a.date));
-const featured = stories.find((s) => s.featured) || stories[0];
-
-// Top stories: hero + 3 side headlines
-const sideHeads = stories.filter((s) => s !== featured).slice(0, 3);
-$("#top-stories").classList.toggle("solo", sideHeads.length === 0);
-$("#top-stories").innerHTML = `
-  <article class="hero" data-i="${idx(featured)}">
-    <img src="${pic(featured, 1200, 675)}"${set(featured, [[800, 450], [1200, 675], [1600, 900]])} sizes="(max-width: 900px) 100vw, 720px" alt="" width="1200" height="675" fetchpriority="high" decoding="async">
-    <div class="hero-text">
-      <span class="label">${esc(featured.category)}</span>
-      <h1><a href="${href(featured)}">${esc(featured.title)}</a></h1>
-      <p>${esc(featured.summary)}</p>
-    </div>
-  </article>
-  <div class="side-heads">
-    ${sideHeads.map((s) => `
-      <article class="side-head" data-i="${idx(s)}">
-        <img src="${pic(s, 220, 160)}"${set(s, [[220, 160], [440, 320]])} sizes="110px" alt="" width="110" height="80" loading="lazy" decoding="async">
-        <div><span class="label">${esc(s.category)}</span><h3><a href="${href(s)}">${esc(s.title)}</a></h3></div>
-      </article>`).join("")}
-  </div>`;
-
-// Trending (titles of latest stories)
-$("#trending").innerHTML = stories.slice(0, 8).map((s) => `<li data-i="${idx(s)}"><a href="${href(s)}">${esc(s.title)}</a></li>`).join("");
-
-// Category bar
-let active = "Home";
-const cats = ["Home", ...new Set(NEWS.map((n) => n.category))];
-$("#filters").innerHTML = cats.map((c) => `<button class="chip${c === active ? " on" : ""}" data-c="${esc(c)}">${esc(c)}</button>`).join("");
-$("#filters").addEventListener("click", (e) => {
-  const c = e.target.dataset.c;
-  if (!c) return;
-  active = c;
-  document.querySelectorAll(".chip").forEach((b) => b.classList.toggle("on", b.dataset.c === c));
-  $("#top-stories").hidden = c !== "Home";
-  render();
-  $("#news").scrollIntoView({ behavior: "smooth", block: "start" });
-});
-
-// Search
-$("#search").addEventListener("input", render);
-$("#search-form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  render();
-  $("#news").scrollIntoView({ behavior: "smooth" });
-});
-
-// Stream
-function render() {
-  const q = $("#search").value.trim().toLowerCase();
-  const onTop = [featured, ...sideHeads];
-  const list = stories.filter((s) =>
-    (active === "Home" ? (q || !onTop.includes(s)) : s.category === active) &&
-    (!q || (s.title + " " + s.summary + " " + s.category).toLowerCase().includes(q)));
-  $("#stream-label").textContent = q ? `· results for “${$("#search").value.trim()}”` : active !== "Home" ? `· ${active}` : "";
-  $("#news-grid").innerHTML = list.map((s) => `
-    <article class="item" data-i="${idx(s)}">
-      <img src="${pic(s)}"${set(s, [[240, 150], [480, 300]])} sizes="(max-width: 700px) 110px, 220px" alt="" width="220" height="138" loading="lazy" decoding="async">
-      <div>
-        <span class="label">${esc(s.category)}</span>
-        <h3><a href="${href(s)}">${esc(s.title)}</a></h3>
-        <p>${esc(s.summary)}</p>
-        <span class="source">IMMA News · ${fmt(s.date)}</span>
-      </div>
-    </article>`).join("");
-  $("#empty").textContent = q || active !== "Home" ? "No stories match your search." : "More stories coming soon.";
-  $("#empty").hidden = list.length > 0;
-}
-render();
-
-// Mobile menu toggle jumps to categories
-$(".menu-toggle").addEventListener("click", () => $("#catbar").scrollIntoView({ behavior: "smooth" }));
-
-// Every story has its own page (built by tools/build_articles.js); cards open it.
-function openStory(i) { location.href = U.storyPath(NEWS[i]); }
-document.addEventListener("click", (e) => {
-  if (e.target.closest("a")) return;   // real links work on their own (and with ctrl/middle click)
-  const el = e.target.closest("[data-i]");
-  if (el) openStory(el.dataset.i);
-});
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Enter" && e.target.matches(".item")) openStory(e.target.dataset.i);
-});
-// The pop-up reader is still used for sponsored content (ads.js)
-const reader = $("#reader");
-if (reader) {
-  reader.querySelector(".close").addEventListener("click", () => reader.close());
-  reader.addEventListener("click", (e) => { if (e.target === reader) reader.close(); });
-}
-
-// Links from other pages: index.html?c=Sports (category) or index.html?q=passport (search)
+// IMMA News homepage behaviour. The stories themselves are already in the page
+// (written by tools/build_articles.js), so this script only:
+//   * applies the administrators' homepage settings (lead story, featured stories,
+//     section order and visibility, labels, breaking news, advert density);
+//   * shows search results (?q=), and forwards old links (?c=, ?story=);
+//   * fills "Most read" from recorded readership (hidden until there is enough data);
+//   * handles the homepage newsletter form and the sponsored-content reader.
 (() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const cfg = typeof SUPABASE !== "undefined" ? SUPABASE : null;
+  const dataEl = $("#home-data");
+  const DATA = dataEl ? JSON.parse(dataEl.textContent) : { stories: [], series: [], resources: [] };
   const params = new URLSearchParams(location.search);
-  const c = params.get("c"), q = params.get("q"), story = params.get("story");
-  if (story && window.IMMA_AUTH) {
-    const i = NEWS.findIndex((s) => window.IMMA_AUTH.storyKey(s) === story);
-    if (i >= 0) { location.replace(U.storyPath(NEWS[i])); return; }   // old ?story= links
+  const rest = (path) => fetch(`${cfg.url}/rest/v1/${path}`, { headers: { apikey: cfg.anonKey, Authorization: "Bearer " + cfg.anonKey } }).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
+  const rpc = (fn, body) => fetch(`${cfg.url}/rest/v1/rpc/${fn}`, { method: "POST", headers: { apikey: cfg.anonKey, Authorization: "Bearer " + cfg.anonKey, "Content-Type": "application/json" }, body: JSON.stringify(body || {}) }).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
+
+  // ---------- Old links ----------
+  const storyParam = params.get("story");
+  if (storyParam) {
+    const s = DATA.stories.find((x) => x.key === storyParam);
+    if (s) { location.replace(s.url); return; }
   }
+  const c = params.get("c");
+  if (c && window.IMMA_URL) {
+    const hub = c === "History & Heritage" ? "/history/before-they-became-famous/" : `/news/${window.IMMA_URL.section(c)}/`;
+    location.replace(hub); return;
+  }
+
+  const count = $("#edition-count");
+  if (count) count.textContent = `${DATA.stories.length} ${DATA.stories.length === 1 ? "story" : "stories"}`;
+
+  // ---------- Search ----------
+  const q = (params.get("q") || "").trim();
   if (q) {
-    $("#search").value = q;
-    render();
-    $("#news").scrollIntoView({ block: "start" });
-  } else if (c && cats.includes(c)) {
-    document.querySelector(`.chip[data-c="${CSS.escape(c)}"]`).click();
+    const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+    const hits = DATA.stories.concat(DATA.series.map((s) => Object.assign({ category: "History & Heritage" }, s)))
+      .filter((s) => words.every((w) => (s.title + " " + s.summary + " " + s.category).toLowerCase().includes(w)))
+      .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    const box = $("#search-results");
+    box.innerHTML = `<div class="results-head"><h1>${hits.length} result${hits.length === 1 ? "" : "s"} for “${esc(q)}”</h1><a class="btn btn-ghost" href="/">Back to today's edition</a></div>
+      ${hits.length ? `<ol class="river">${hits.map((s) => `<li><time datetime="${esc(s.date)}">${esc(new Date(s.date + "T12:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }))}</time>
+        <div><p class="kicker">${esc(s.category)}</p><h3><a href="${esc(s.url)}">${esc(s.title)}</a></h3><p>${esc(s.summary)}</p></div>
+        <a href="${esc(s.url)}" tabindex="-1" aria-hidden="true"><img src="${esc(s.thumb || s.image || "/images/placeholder.svg")}" alt="" width="132" height="88" loading="lazy"></a></li>`).join("")}</ol>`
+        : `<p class="empty">No stories match your search. Try other words, or browse the <a href="/news/">latest news</a>.</p>`}`;
+    box.hidden = false;
+    $("#home").hidden = true;
+    document.title = `Search: ${q} · IMMA News`;
+    const m = document.createElement("meta"); m.name = "robots"; m.content = "noindex, follow"; document.head.appendChild(m);
   }
+
+  // ---------- Administrator settings ----------
+  const CACHE = "imma_home_v1";
+  let cached = null;
+  try { cached = JSON.parse(localStorage.getItem(CACHE) || "null"); } catch (e) {}
+  const differs = (s) => !!(s && (s.lead || (s.featured && s.featured.length) || (s.order && s.order.length) || (s.hidden && s.hidden.length) || (s.labels && Object.keys(s.labels).length)));
+
+  function applyAds(s) {
+    const density = (s && s.adDensity) || "standard";
+    const off = density === "minimal" ? ['[data-ad-slot="top_leaderboard"]', '[data-ad-slot="sidebar"]', '[data-ad-slot="sidebar_large"]', '[data-ad-slot="home_premium"]']
+      : density === "light" ? ['[data-ad-slot="sidebar_large"]', '[data-ad-slot="home_premium"]', '[data-ad-slot="sidebar"]'] : [];
+    off.forEach((sel) => document.querySelectorAll(sel).forEach((el) => { (el.closest(".ad-band") || el).remove(); }));
+  }
+  function applyBreaking(s) {
+    const b = s && s.breaking, bar = $("#breaking");
+    if (!bar) return;
+    if (b && b.text && (!b.until || new Date(b.until) > new Date())) {
+      const safe = b.url && /^(https:\/\/|\/)/.test(b.url) ? b.url : null;
+      bar.innerHTML = `<div class="wrap"><b>Breaking</b><span>${safe ? `<a href="${esc(safe)}">${esc(b.text)}</a>` : esc(b.text)}</span></div>`;
+      bar.hidden = false;
+    } else { bar.hidden = true; bar.innerHTML = ""; }
+  }
+  function applyLayout(s) {
+    if (!differs(s) || !window.IMMA_HOME || q) return;
+    const out = window.IMMA_HOME.render(DATA, s);
+    const home = $("#home");
+    const keep = home.querySelector("#home-data");
+    home.innerHTML = out.main;
+    if (keep) home.appendChild(keep);
+    wire();
+  }
+  function apply(s) { applyAds(s); applyBreaking(s); applyLayout(s); }
+  if (cached) apply(cached.value);
+  if (cfg && cfg.url) {
+    rest("site_settings?key=eq.homepage&select=value,updated_at").then((rows) => {
+      const v = (rows[0] && rows[0].value) || {};
+      const before = cached && cached.value;
+      try { localStorage.setItem(CACHE, JSON.stringify({ value: v, at: Date.now() })); } catch (e) {}
+      if (JSON.stringify(v) === JSON.stringify(before)) return;
+      applyAds(v); applyBreaking(v);
+      if (differs(v)) applyLayout(v);
+      else if (differs(before)) location.reload();   // settings were cleared: show the built page
+    }).catch(() => {});
+  }
+
+  // ---------- Things inside the edition that need wiring (also after a re-render) ----------
+  function wire() {
+    const days = window.IMMA_HEADER ? window.IMMA_HEADER.daysToElection() : null;
+    if (days != null) {
+      document.querySelectorAll(".countdown [data-election-days]").forEach((el) => (el.textContent = days > 0 ? days.toLocaleString("en-KE") : days === 0 ? "Today" : "✓"));
+      document.querySelectorAll(".countdown [data-election-label]").forEach((el) => (el.textContent = days > 1 ? "days to go" : days === 1 ? "day to go" : days === 0 ? "Election Day" : "Kenya has voted"));
+    }
+    const form = $("[data-home-newsletter]");
+    if (form && !form.dataset.wired) {
+      form.dataset.wired = "1";
+      form.addEventListener("submit", (e) => { e.preventDefault(); if (window.IMMA_NEWSLETTER && window.IMMA_NEWSLETTER.subscribe) window.IMMA_NEWSLETTER.subscribe(form); });
+    }
+    trending();
+  }
+
+  // ---------- Most read (real recorded visits only) ----------
+  let trendData = null;
+  async function trending() {
+    const box = $("[data-trending]");
+    if (!box || !cfg || !cfg.url) return;
+    try {
+      if (!trendData) trendData = await rpc("trending_stories", { p_days: 7, p_limit: 8 });
+      const all = DATA.stories.concat(DATA.series);
+      const list = (trendData || []).map((r) => all.find((s) => s.key === r.story_key)).filter(Boolean).slice(0, 6);
+      if (list.length < 3) return;   // not enough real data yet
+      box.querySelector("ol").innerHTML = list.map((s) => `<li><a href="${esc(s.url)}">${esc(s.title)}</a></li>`).join("");
+      box.hidden = false;
+    } catch (e) { /* the module simply stays hidden */ }
+  }
+
+  // ---------- Pop-up reader (sponsored content from ads.js) ----------
+  const reader = $("#reader");
+  if (reader) {
+    reader.querySelector(".close").addEventListener("click", () => reader.close());
+    reader.addEventListener("click", (e) => { if (e.target === reader) reader.close(); });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wire); else wire();
 })();

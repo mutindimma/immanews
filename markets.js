@@ -74,7 +74,10 @@
   async function loadAll() {
     await Promise.all([loadFx(), loadGold(), loadBtc()]);
     const t = document.querySelector("#markets-updated");
-    if (t) t.textContent = "Updated " + new Date().toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+    const time = new Date(Date.now() + 3 * 3600 * 1000).toISOString().slice(11, 16);   // Nairobi time
+    const ok = [...list.querySelectorAll("b")].some((b) => b.textContent !== "—" && b.textContent !== "…");
+    // the source names are shown with the time, so readers know where each price comes from
+    if (t) t.innerHTML = ok ? `Updated ${time} EAT · Sources: <a href="https://github.com/fawazahmed0/exchange-api" target="_blank" rel="noopener">currency-api</a> (daily rates), <a href="https://gold-api.com/" target="_blank" rel="noopener">gold-api</a>, <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a>` : "Market data is unavailable right now.";
   }
   loadAll();
   setInterval(loadAll, 5 * 60 * 1000); // refresh every 5 minutes
