@@ -47,7 +47,7 @@
   <header class="masthead" id="top">
     <div class="wrap mh-inner">
       <div class="mh-left">
-        <button type="button" class="mh-menu" data-menu aria-expanded="false" aria-controls="site-nav">${I.menu}<span>Sections</span></button>
+        <button type="button" class="mh-menu" data-menu aria-expanded="false" aria-controls="site-nav" aria-label="Sections menu">${I.menu}<span>Sections</span></button>
         <form class="mh-search" action="/index.html" method="get" role="search">
           <label class="sr-only" for="mh-q">Search IMMA News</label>
           <input id="mh-q" type="search" name="q" placeholder="Search" autocomplete="off">

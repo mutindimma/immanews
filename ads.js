@@ -84,7 +84,7 @@
     const [w, h] = sizeOf(p, mobile);
     const shape = h >= w * 1.5 ? "tall" : h >= w * 0.6 ? "box" : h > 150 ? "wide-big" : "wide";
     return `
-      <a class="ad-house ad-house--${shape}" href="${advertiseUrl}" aria-label="Advertise with IMMA News">
+      <a class="ad-house ad-house--${shape}" href="${advertiseUrl}">
         <img class="ad-house__emblem" src="/images/imma-news-emblem.png" alt="" width="200" height="192">
         <span class="ad-house__text">
           <b>YOUR BRAND BELONGS HERE</b>
